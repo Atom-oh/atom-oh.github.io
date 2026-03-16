@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oh Junseok | Sr. Solutions Architect @ AWS</title>
+  <meta name="description" content="Cloud & Kubernetes specialist. AWS Sr. Solutions Architect. Formerly Samsung, Coupang, Mathpresso, Yogiyo.">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --text: #e6edf3;
+      --text-secondary: #8b949e;
+      --accent: #FF9900;
+      --border: #30363d;
+      --tag-bg: #1f2937;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.8; }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
+    }
+    .header-name { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+    .header-links { display: flex; gap: 1rem; }
+    .header-links a {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+    .header-links a:hover { color: var(--accent); }
+    .header-links svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* Main layout */
+    .main {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 3rem;
+      padding: 2.5rem 2rem;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: sticky;
+      top: 80px;
+      align-self: start;
+    }
+    .sidebar-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #e67700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 auto 1.25rem;
+    }
+    .sidebar-name { font-size: 1.375rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .sidebar-title { color: var(--accent); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.125rem; }
+    .sidebar-org { color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.75rem; }
+    .sidebar-location { color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: center; gap: 0.375rem; }
+    .sidebar-links { display: flex; flex-direction: column; gap: 0.625rem; }
+    .sidebar-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .sidebar-links a:hover { background: var(--tag-bg); color: var(--accent); }
+    .sidebar-links svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+    /* Content */
+    .content { min-width: 0; }
+
+    .section { margin-bottom: 3rem; }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-title span { color: var(--accent); }
+
+    /* About */
+    .about-text { color: var(--text-secondary); font-size: 1rem; line-height: 1.8; }
+
+    /* Experience */
+    .timeline { position: relative; padding-left: 1.5rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.75rem;
+      padding-left: 1.25rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.5rem;
+      top: 0.55rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 2px solid var(--bg);
+    }
+    .timeline-item:first-child::before { background: var(--accent); }
+    .timeline-period { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.25rem; }
+    .timeline-role { font-size: 1.05rem; font-weight: 600; }
+    .timeline-company { color: var(--accent); font-weight: 600; }
+    .timeline-desc { font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.375rem; line-height: 1.6; }
+
+    /* Skills */
+    .skills-category { margin-bottom: 1.25rem; }
+    .skills-category-name { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .skills-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.375rem 0.75rem;
+      font-size: 0.825rem;
+      color: var(--text);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Featured */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .featured-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .featured-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .featured-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .featured-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.4; }
+    .featured-desc { font-size: 0.825rem; color: var(--text-secondary); line-height: 1.5; flex: 1; }
+    .featured-link {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+    .footer a { color: var(--text-secondary); }
+    .footer a:hover { color: var(--accent); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .main {
+        grid-template-columns: 1fr;
+        padding: 1.5rem 1rem;
+        gap: 2rem;
+      }
+      .sidebar { position: static; }
+      .header { padding: 1rem; }
+      .featured-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-name">Oh Junseok</div>
+    <nav class="header-links">
+      <a href="https://github.com/Atom-oh" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/oh-junseok/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <div class="avatar">JS</div>
+        <div class="sidebar-name">Oh Junseok</div>
+        <div class="sidebar-title">Sr. Solutions Architect</div>
+        <div class="sidebar-org">Amazon Web Services</div>
+        <div class="sidebar-location">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Seoul, South Korea
+        </div>
+        <div class="sidebar-links">
+          <a href="https://github.com/Atom-oh" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            github.com/Atom-oh
+          </a>
+          <a href="https://www.linkedin.com/in/oh-junseok/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            linkedin.com/in/oh-junseok
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <main class="content">
+
+      <!-- About -->
+      <section class="section">
+        <h2 class="section-title"><span>//</span> About</h2>
+        <p class="about-text">
+          글로벌 서비스 구축, Multi-Region HA 아키텍처, DevOps 자동화, 그리고 Agentic AI까지 &mdash; 클라우드 네이티브 기술의 최전선에서 일하고 있습니다.
+          현재 AWS Solutions Architect로서 고객이 확장 가능하고 탄력적인 아키텍처를 설계할 수 있도록 돕고 있습니다.
+        </p>
+        <p class="about-text" style="margin-top: 0.75rem;">
+          EKS 기반 AI/ML 워크로드 운영, Amazon Bedrock Agent 활용, Karpenter 오토스케일링, Istio 서비스 메시 등 최신 클라우드 기술을 실전에 적용하며,
+          Terraform과 ACK를 활용한 IaC, GitOps 기반 멀티 클러스터 배포 전략 등 현대적인 운영 패턴을 설계합니다.
+        </p>
+      </section>
+
+      <!-- Experience -->
+      <section class="section">
+        <h2 class="section-title"><span>//</span> Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-period">2024.12 &mdash; Present</div>
+            <div class="timeline-role"><span class="timeline-company">AWS</span> &middot; Sr. Solutions Architect</div>
+            <div class="timeline-desc">클라우드 네이티브 아키텍처 설계 및 고객 기술 지원. EKS, 컨테이너, IaC 전문 영역.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">2023.02 &mdash; 2025.01</div>
+            <div class="timeline-role"><span class="timeline-company">Yogiyo</span> &middot; DevOps / Principal Engineer</div>
+            <div class="timeline-desc">Multi-EKS 클러스터 운영, Active-Active 아키텍처 구축, Karpenter 도입, Istio 서비스 메시 적용, Terraform에서 ACK 기반 IaC 전환.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">2022.05 &mdash; 2023.02</div>
+            <div class="timeline-role"><span class="timeline-company">Mathpresso (QANDA)</span> &middot; DevOps Engineer</div>
+            <div class="timeline-desc">Kubernetes 클러스터 관리 및 CI/CD 파이프라인 구축. 인프라 자동화 및 모니터링 체계 수립.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">2020.11 &mdash; 2022.05</div>
+            <div class="timeline-role"><span class="timeline-company">Coupang</span> &middot; Principal Engineer</div>
+            <div class="timeline-desc">대규모 마이크로서비스 아키텍처 운영. 서비스 안정성 및 배포 자동화.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">2009.01 &mdash; 2020.10</div>
+            <div class="timeline-role"><span class="timeline-company">Samsung Electronics</span> &middot; Staff Engineer</div>
+            <div class="timeline-desc">임베디드 소프트웨어 개발 및 시스템 아키텍처 설계. 11년간의 엔지니어링 기반 구축.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="section">
+        <h2 class="section-title"><span>//</span> Skills</h2>
+
+        <div class="skills-category">
+          <div class="skills-category-name">Cloud</div>
+          <div class="skills-tags">
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">GCP</span>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <div class="skills-category-name">Container & Orchestration</div>
+          <div class="skills-tags">
+            <span class="skill-tag">Kubernetes</span>
+            <span class="skill-tag">EKS</span>
+            <span class="skill-tag">Istio</span>
+            <span class="skill-tag">Karpenter</span>
+            <span class="skill-tag">Docker</span>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <div class="skills-category-name">IaC & CI/CD</div>
+          <div class="skills-tags">
+            <span class="skill-tag">Terraform</span>
+            <span class="skill-tag">ACK</span>
+            <span class="skill-tag">ArgoCD</span>
+            <span class="skill-tag">GitHub Actions</span>
+            <span class="skill-tag">Spinnaker</span>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <div class="skills-category-name">Monitoring</div>
+          <div class="skills-tags">
+            <span class="skill-tag">Grafana</span>
+            <span class="skill-tag">Datadog</span>
+            <span class="skill-tag">CloudWatch</span>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <div class="skills-category-name">Languages & Frameworks</div>
+          <div class="skills-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">TypeScript</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured -->
+      <section class="section">
+        <h2 class="section-title"><span>//</span> Featured</h2>
+        <div class="featured-grid">
+
+          <a class="featured-card" href="https://www.youtube.com/watch?v=FuxRoCYMEiA" target="_blank" rel="noopener">
+            <div class="featured-label">Talk</div>
+            <div class="featured-title">AWS Summit Seoul 2024 &mdash; Karpenter in EKS</div>
+            <div class="featured-desc">EKS 환경에서 Karpenter를 활용한 효율적인 노드 오토스케일링 전략 발표.</div>
+            <span class="featured-link">Watch &rarr;</span>
+          </a>
+
+          <a class="featured-card" href="https://www.youtube.com/watch?v=HclHro0Yafc" target="_blank" rel="noopener">
+            <div class="featured-label">Talk</div>
+            <div class="featured-title">AI x Industry Week 2025 &mdash; Woori Bank BaaS + Control Tower</div>
+            <div class="featured-desc">우리은행 BaaS 플랫폼과 Control Tower 아키텍처 구축 사례 발표.</div>
+            <span class="featured-link">Watch &rarr;</span>
+          </a>
+
+          <a class="featured-card" href="https://aws.amazon.com/ko/blogs/tech/yogiyo-multi-eks-gitops-blue-green/" target="_blank" rel="noopener">
+            <div class="featured-label">Blog</div>
+            <div class="featured-title">Multi-EKS GitOps Blue-Green Strategy</div>
+            <div class="featured-desc">요기요의 Multi-EKS 환경에서 GitOps 기반 Blue-Green 배포 전략을 다룬 AWS 기술 블로그.</div>
+            <span class="featured-link">Read &rarr;</span>
+          </a>
+
+          <a class="featured-card" href="https://github.com/Atom-oh/oh-my-cloud-skills" target="_blank" rel="noopener">
+            <div class="featured-label">Project</div>
+            <div class="featured-title">oh-my-cloud-skills</div>
+            <div class="featured-desc">클라우드 엔지니어를 위한 실전 스킬 컬렉션. AWS, Kubernetes, IaC 관련 학습 리소스와 도구 모음.</div>
+            <span class="featured-link">GitHub &rarr;</span>
+          </a>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Oh Junseok. Built with pure HTML &amp; CSS.</p>
+    <p style="margin-top: 0.5rem;">
+      <a href="https://github.com/Atom-oh" target="_blank" rel="noopener">GitHub</a>
+      &nbsp;&middot;&nbsp;
+      <a href="https://www.linkedin.com/in/oh-junseok/" target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+  </footer>
+
+</body>
+</html>
