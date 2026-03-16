@@ -82,13 +82,8 @@
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), #e67700);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #fff;
+      object-fit: cover;
+      border: 3px solid var(--accent);
       margin: 0 auto 1.25rem;
     }
     .sidebar-name { font-size: 1.375rem; font-weight: 700; margin-bottom: 0.25rem; }
@@ -256,7 +251,7 @@
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-card">
-        <div class="avatar">JS</div>
+        <img class="avatar" src="assets/img/me.jpg" alt="Oh Junseok">
         <div class="sidebar-name">Oh Junseok</div>
         <div class="sidebar-title">Sr. Solutions Architect</div>
         <div class="sidebar-org">Amazon Web Services</div>
