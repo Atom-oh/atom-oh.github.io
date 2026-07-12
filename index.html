@@ -206,6 +206,11 @@
       gap: 0.25rem;
     }
 
+    /* Projects */
+    .project-group { margin-bottom: 1.5rem; }
+    .project-group-name { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .project-links { margin-top: 0.75rem; display: flex; gap: 1rem; font-size: 0.8rem; font-weight: 600; }
+
     /* Footer */
     .footer {
       border-top: 1px solid var(--border);
@@ -402,13 +407,96 @@
             <span class="featured-link">Read &rarr;</span>
           </a>
 
-          <a class="featured-card" href="https://github.com/Atom-oh/oh-my-cloud-skills" target="_blank" rel="noopener">
-            <div class="featured-label">Project</div>
-            <div class="featured-title">oh-my-cloud-skills</div>
-            <div class="featured-desc">클라우드 엔지니어를 위한 실전 스킬 컬렉션. AWS, Kubernetes, IaC 관련 학습 리소스와 도구 모음.</div>
-            <span class="featured-link">GitHub &rarr;</span>
-          </a>
+        </div>
+      </section>
 
+      <!-- Projects -->
+      <section class="section">
+        <h2 class="section-title"><span>//</span> Projects</h2>
+
+        <div class="project-group">
+          <div class="project-group-name">Kubernetes &amp; EKS</div>
+          <div class="featured-grid">
+            <div class="featured-card">
+              <div class="featured-label">Docs</div>
+              <div class="featured-title">kubernetes-docs</div>
+              <div class="featured-desc">Amazon EKS를 폭넓게 이해하기 위한 심화 기술 문서 사이트.</div>
+              <div class="project-links">
+                <a href="https://www.atomai.click/kubernetes-docs/" target="_blank" rel="noopener">Live &rarr;</a>
+                <a href="https://github.com/Atom-oh/kubernetes-docs" target="_blank" rel="noopener">GitHub &rarr;</a>
+              </div>
+            </div>
+
+            <div class="featured-card">
+              <div class="featured-label">Architecture</div>
+              <div class="featured-title">multi-region-architecture</div>
+              <div class="featured-desc">us-east-1/us-west-2 멀티 리전 쇼핑몰 아키텍처. Terraform + K8s + GitHub Actions.</div>
+              <div class="project-links">
+                <a href="https://www.atomai.click/multi-region-architecture/" target="_blank" rel="noopener">Live &rarr;</a>
+                <a href="https://github.com/Atom-oh/multi-region-architecture" target="_blank" rel="noopener">GitHub &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-group">
+          <div class="project-group-name">AWS Operations</div>
+          <div class="featured-grid">
+            <div class="featured-card">
+              <div class="featured-label">Ops</div>
+              <div class="featured-title">awsops</div>
+              <div class="featured-desc">AWS 운영 자동화를 위한 도구 및 대시보드 모음.</div>
+              <div class="project-links">
+                <a href="https://www.atomai.click/awsops/" target="_blank" rel="noopener">Live &rarr;</a>
+                <a href="https://github.com/Atom-oh/awsops" target="_blank" rel="noopener">GitHub &rarr;</a>
+              </div>
+            </div>
+
+            <div class="featured-card">
+              <div class="featured-label">Benchmark</div>
+              <div class="featured-title">aws-ec2-benchmark</div>
+              <div class="featured-desc">EC2 인스턴스 타입별 성능 벤치마크 결과 정리.</div>
+              <div class="project-links">
+                <a href="https://benchmark.aws.atomai.click/" target="_blank" rel="noopener">Live &rarr;</a>
+                <a href="https://github.com/Atom-oh/aws-ec2-benchmark" target="_blank" rel="noopener">GitHub &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-group">
+          <div class="project-group-name">Content &amp; AI</div>
+          <div class="featured-grid">
+            <div class="featured-card">
+              <div class="featured-label">Framework</div>
+              <div class="featured-title">reactive_presentation</div>
+              <div class="featured-desc">웹 기반 인터랙티브 프레젠테이션 프레임워크.</div>
+              <div class="project-links">
+                <a href="https://presentation.atomai.click/" target="_blank" rel="noopener">Live &rarr;</a>
+                <a href="https://github.com/Atom-oh/reactive_presentation" target="_blank" rel="noopener">GitHub &rarr;</a>
+              </div>
+            </div>
+
+            <div class="featured-card">
+              <div class="featured-label">Skills</div>
+              <div class="featured-title">oh-my-cloud-skills</div>
+              <div class="featured-desc">클라우드 엔지니어를 위한 실전 스킬 컬렉션. AWS, Kubernetes, IaC 관련 학습 리소스와 도구 모음.</div>
+              <div class="project-links">
+                <a href="https://www.atomai.click/oh-my-cloud-skills/" target="_blank" rel="noopener">Live &rarr;</a>
+                <a href="https://github.com/Atom-oh/oh-my-cloud-skills" target="_blank" rel="noopener">GitHub &rarr;</a>
+              </div>
+            </div>
+
+            <div class="featured-card">
+              <div class="featured-label">Blog</div>
+              <div class="featured-title">blog</div>
+              <div class="featured-desc">클라우드 &amp; DevOps 기술 블로그.</div>
+              <div class="project-links">
+                <a href="https://www.atomai.click/blog/" target="_blank" rel="noopener">Live &rarr;</a>
+                <a href="https://github.com/Atom-oh/blog" target="_blank" rel="noopener">GitHub &rarr;</a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
