@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats | Oh Junseok</title>
+<meta name="robots" content="noindex, nofollow">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0d1117; --card:#161b22; --text:#e6edf3; --text-secondary:#8b949e;
+    --accent:#FF9900; --border:#30363d;
+  }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--text); min-height:100vh; padding:2.5rem 2rem;
+  }
+  .wrap{max-width:900px;margin:0 auto}
+  h1{font-size:1.4rem;margin-bottom:1.5rem}
+  h1 span{color:var(--accent)}
+  #signin-area{display:flex;justify-content:center;padding:4rem 0}
+  #denied{display:none;text-align:center;color:var(--text-secondary);padding:4rem 0}
+  #dashboard{display:none}
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-bottom:1.1rem}
+  .stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem}
+  .stat-card .lbl{color:var(--text-secondary);font-size:.72rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:.35rem}
+  .stat-card .val{font-size:1.55rem;font-weight:700}
+  .chart-row{display:grid;grid-template-columns:1.4fr 1fr;gap:.9rem}
+  .chart-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.1rem}
+  .chart-card .lbl{color:var(--text-secondary);font-size:.72rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:1rem}
+  .bar-chart{display:flex;align-items:flex-end;gap:.7rem;height:150px;padding:0 .3rem}
+  .bar-chart .bar{flex:1;background:linear-gradient(180deg,#39d3ff,#0ea5d6);border-radius:4px 4px 0 0;position:relative;min-height:2px}
+  .bar-chart .bar span{position:absolute;bottom:-1.4rem;left:0;right:0;text-align:center;font-size:.62rem;color:var(--text-secondary);white-space:nowrap;overflow:hidden}
+  .bar-chart .bar b{position:absolute;top:-1.3rem;left:0;right:0;text-align:center;font-size:.68rem}
+  .donut-wrap{display:flex;align-items:center;gap:1.2rem;justify-content:center;height:150px}
+  .legend{font-size:.72rem;display:flex;flex-direction:column;gap:.4rem}
+  .legend .row{display:flex;align-items:center;gap:.4rem}
+  .legend .sw{width:9px;height:9px;border-radius:2px;display:inline-block}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1><span>//</span> Traffic Stats</h1>
+
+    <div id="signin-area">
+      <div id="g_id_signin"></div>
+    </div>
+
+    <div id="denied">접근 권한이 없습니다.</div>
+
+    <div id="dashboard">
+      <div class="stat-grid">
+        <div class="stat-card"><div class="lbl">방문자 (28일)</div><div class="val" id="stat-visitors">–</div></div>
+        <div class="stat-card"><div class="lbl">페이지뷰</div><div class="val" id="stat-pageviews">–</div></div>
+        <div class="stat-card"><div class="lbl">평균 세션</div><div class="val" id="stat-session">–</div></div>
+        <div class="stat-card"><div class="lbl">이탈률</div><div class="val" id="stat-bounce">–</div></div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-card">
+          <div class="lbl">사이트별 페이지뷰</div>
+          <div class="bar-chart" id="bar-chart"></div>
+        </div>
+        <div class="chart-card">
+          <div class="lbl">디바이스 비중</div>
+          <div class="donut-wrap" id="donut-wrap"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const CLIENT_ID = "1018570558488-6gnlv7qneqqh86t3ed74q6jmt7pd3qr0.apps.googleusercontent.com";
+  const FUNCTION_URL = "REPLACE_AFTER_TERRAFORM_APPLY";
+  const DONUT_COLORS = ["#FF9900", "#39d3ff", "#8b5cf6", "#22c55e", "#ef4444"];
+
+  function handleCredentialResponse(response) {
+    fetch(FUNCTION_URL, {
+      headers: { Authorization: "Bearer " + response.credential },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("denied");
+        return res.json();
+      })
+      .then(renderDashboard)
+      .catch(showDenied);
+  }
+
+  function showDenied() {
+    document.getElementById("signin-area").style.display = "none";
+    document.getElementById("denied").style.display = "block";
+  }
+
+  function formatSeconds(totalSeconds) {
+    const m = Math.floor(totalSeconds / 60);
+    const s = totalSeconds % 60;
+    return m + "m " + s + "s";
+  }
+
+  function renderDashboard(data) {
+    document.getElementById("signin-area").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+
+    document.getElementById("stat-visitors").textContent = data.totals.visitors.toLocaleString();
+    document.getElementById("stat-pageviews").textContent = data.totals.pageviews.toLocaleString();
+    document.getElementById("stat-session").textContent = formatSeconds(data.totals.avgSessionSeconds);
+    document.getElementById("stat-bounce").textContent = data.totals.bounceRate + "%";
+
+    const barChart = document.getElementById("bar-chart");
+    const maxPv = Math.max(1, ...data.byHostname.map((r) => r.pageViews));
+    barChart.innerHTML = data.byHostname
+      .map((row) => {
+        const heightPct = Math.round((row.pageViews / maxPv) * 100);
+        const label = row.hostname.replace(".atomai.click", "").replace("www", "main");
+        return (
+          '<div class="bar" style="height:' + heightPct + '%">' +
+          "<b>" + row.pageViews.toLocaleString() + "</b>" +
+          "<span>" + label + "</span>" +
+          "</div>"
+        );
+      })
+      .join("");
+
+    const totalUsers = data.byDevice.reduce((sum, r) => sum + r.users, 0) || 1;
+    let offset = 0;
+    const circles = data.byDevice
+      .map((row, i) => {
+        const pct = Math.round((row.users / totalUsers) * 100);
+        const circle =
+          '<circle cx="21" cy="21" r="15.9" fill="transparent" stroke="' + DONUT_COLORS[i % DONUT_COLORS.length] +
+          '" stroke-width="6" stroke-dasharray="' + pct + " " + (100 - pct) +
+          '" stroke-dashoffset="' + -offset + '" transform="rotate(-90 21 21)"/>';
+        offset += pct;
+        return circle;
+      })
+      .join("");
+    const legend = data.byDevice
+      .map(
+        (row, i) =>
+          '<div class="row"><span class="sw" style="background:' + DONUT_COLORS[i % DONUT_COLORS.length] +
+          '"></span>' + row.device + " " + Math.round((row.users / totalUsers) * 100) + "%</div>"
+      )
+      .join("");
+    document.getElementById("donut-wrap").innerHTML =
+      '<svg width="120" height="120" viewBox="0 0 42 42">' + circles + "</svg>" +
+      '<div class="legend">' + legend + "</div>";
+  }
+
+  window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: CLIENT_ID,
+      callback: handleCredentialResponse,
+    });
+    google.accounts.id.renderButton(document.getElementById("g_id_signin"), {
+      theme: "outline",
+      size: "large",
+    });
+  };
+</script>
+</body>
+</html>
