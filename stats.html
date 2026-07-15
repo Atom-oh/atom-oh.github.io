@@ -42,7 +42,7 @@
 </head>
 <body>
   <div class="wrap">
-    <h1><span>//</span> Traffic Stats</h1>
+    <h1><span>//</span> Traffic Stats <button id="refresh-btn" onclick="refreshDashboard()" style="display:none;background:none;border:1px solid var(--border);color:var(--text-secondary);border-radius:6px;font-size:.75rem;padding:.3rem .6rem;cursor:pointer;vertical-align:middle;">새로고침</button></h1>
 
     <div id="signin-area">
       <div id="g_id_signin"></div>
@@ -75,9 +75,16 @@
   const FUNCTION_URL = "https://stats-api.atomai.click/api/stats";
   const DONUT_COLORS = ["#FF9900", "#39d3ff", "#8b5cf6", "#22c55e", "#ef4444"];
 
+  let lastCredential = null;
+
   function handleCredentialResponse(response) {
+    lastCredential = response.credential;
+    loadDashboard(lastCredential);
+  }
+
+  function loadDashboard(credential) {
     fetch(FUNCTION_URL, {
-      headers: { Authorization: "Bearer " + response.credential },
+      headers: { Authorization: "Bearer " + credential },
     })
       .then((res) => {
         if (!res.ok) throw new Error("denied");
@@ -85,6 +92,10 @@
       })
       .then(renderDashboard)
       .catch(showDenied);
+  }
+
+  function refreshDashboard() {
+    if (lastCredential) loadDashboard(lastCredential);
   }
 
   function showDenied() {
@@ -101,6 +112,7 @@
   function renderDashboard(data) {
     document.getElementById("signin-area").style.display = "none";
     document.getElementById("dashboard").style.display = "block";
+    document.getElementById("refresh-btn").style.display = "inline-block";
 
     document.getElementById("stat-visitors").textContent = data.totals.visitors.toLocaleString();
     document.getElementById("stat-pageviews").textContent = data.totals.pageviews.toLocaleString();
@@ -151,11 +163,14 @@
     google.accounts.id.initialize({
       client_id: CLIENT_ID,
       callback: handleCredentialResponse,
+      auto_select: true,
+      cancel_on_tap_outside: false,
     });
     google.accounts.id.renderButton(document.getElementById("g_id_signin"), {
       theme: "outline",
       size: "large",
     });
+    google.accounts.id.prompt();
   };
 </script>
 </body>
