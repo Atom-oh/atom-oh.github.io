@@ -38,6 +38,15 @@
   .legend{font-size:.72rem;display:flex;flex-direction:column;gap:.4rem}
   .legend .row{display:flex;align-items:center;gap:.4rem}
   .legend .sw{width:9px;height:9px;border-radius:2px;display:inline-block}
+  .page-log{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.1rem;margin-top:.9rem}
+  .page-log .lbl{color:var(--text-secondary);font-size:.72rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:.8rem}
+  .page-log table{width:100%;border-collapse:collapse;font-size:.8rem}
+  .page-log th{text-align:left;color:var(--text-secondary);font-weight:400;font-size:.7rem;text-transform:uppercase;padding:.3rem .4rem;border-bottom:1px solid var(--border)}
+  .page-log th.num,.page-log td.num{text-align:right}
+  .page-log td{padding:.45rem .4rem;border-bottom:1px solid var(--border)}
+  .page-log tr:last-child td{border-bottom:none}
+  .page-log .site-tag{color:var(--accent);font-size:.68rem;font-weight:600;margin-right:.5rem;white-space:nowrap}
+  .page-log .path{color:var(--text-secondary);word-break:break-all}
 </style>
 </head>
 <body>
@@ -66,6 +75,13 @@
           <div class="lbl">디바이스 비중</div>
           <div class="donut-wrap" id="donut-wrap"></div>
         </div>
+      </div>
+      <div class="page-log">
+        <div class="lbl">페이지별 조회수 (상위 20)</div>
+        <table>
+          <thead><tr><th>사이트</th><th>경로</th><th class="num">조회수</th></tr></thead>
+          <tbody id="page-log-body"></tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -157,6 +173,15 @@
     document.getElementById("donut-wrap").innerHTML =
       '<svg width="120" height="120" viewBox="0 0 42 42">' + circles + "</svg>" +
       '<div class="legend">' + legend + "</div>";
+
+    document.getElementById("page-log-body").innerHTML = (data.topPages || [])
+      .map(
+        (row) =>
+          "<tr><td><span class=\"site-tag\">" + row.site + "</span></td>" +
+          "<td class=\"path\">" + row.path + "</td>" +
+          "<td class=\"num\">" + row.views.toLocaleString() + "</td></tr>"
+      )
+      .join("");
   }
 
   window.onload = function () {
