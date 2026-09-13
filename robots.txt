@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.atomai.click/sitemap.xml
+Sitemap: https://www.atomai.click/kubernetes-docs/sitemap.xml
