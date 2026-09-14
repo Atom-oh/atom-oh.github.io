@@ -1,590 +1,2406 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oh Junseok | Sr. Solutions Architect @ AWS</title>
-  <meta name="description" content="Cloud & Kubernetes specialist. AWS Sr. Solutions Architect. Formerly Samsung, Coupang, Mathpresso, Yogiyo.">
-  <link rel="icon" href="assets/img/me.jpg">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6267917556914416"
-     crossorigin="anonymous"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GWVLEW5JLL"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','G-GWVLEW5JLL');</script>
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg: #0d1117;
-      --card: #161b22;
-      --text: #e6edf3;
-      --text-secondary: #8b949e;
-      --accent: #FF9900;
-      --border: #30363d;
-      --tag-bg: #1f2937;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
-    a:hover { opacity: 0.8; }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; transform: none !important; }
-      html { scroll-behavior: auto; }
-    }
-
-    /* Header */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.25rem 2rem;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: var(--bg);
-      z-index: 100;
-    }
-    .header-name { font-size: 1.25rem; font-weight: 700; color: var(--text); }
-    .header-links { display: flex; gap: 1rem; }
-    .header-links a {
-      color: var(--text-secondary);
-      font-size: 0.875rem;
-      display: flex;
-      align-items: center;
-      gap: 0.375rem;
-    }
-    .header-links a:hover { color: var(--accent); }
-    .header-links svg { width: 18px; height: 18px; fill: currentColor; }
-
-    /* Main layout */
-    .main {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      max-width: 1100px;
-      margin: 0 auto;
-      gap: 3rem;
-      padding: 2.5rem 2rem;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      position: sticky;
-      top: 80px;
-      align-self: start;
-    }
-    .sidebar-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-    }
-    .avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--accent);
-      margin: 0 auto 1.25rem;
-    }
-    .sidebar-name { font-size: 1.375rem; font-weight: 700; margin-bottom: 0.25rem; }
-    .sidebar-title { color: var(--accent); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.125rem; }
-    .sidebar-org { color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.75rem; }
-    .sidebar-location { color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: center; gap: 0.375rem; }
-    .sidebar-links { display: flex; flex-direction: column; gap: 0.625rem; }
-    .sidebar-links a {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      padding: 0.5rem 0.75rem;
-      border-radius: 8px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .sidebar-links a:hover { background: var(--tag-bg); color: var(--accent); }
-    .sidebar-links svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
-
-    /* Content */
-    .content { min-width: 0; }
-
-    .section { margin-bottom: 3rem; }
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--border);
-    }
-    .section-title span { color: var(--accent); }
-
-    /* About */
-    .about-text { color: var(--text-secondary); font-size: 1rem; line-height: 1.8; }
-
-    /* Experience */
-    .timeline { position: relative; padding-left: 1.5rem; }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.5rem;
-      bottom: 0.5rem;
-      width: 2px;
-      background: var(--border);
-    }
-    .timeline-item {
-      position: relative;
-      margin-bottom: 1.75rem;
-      padding-left: 1.25rem;
-    }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -1.5rem;
-      top: 0.55rem;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--border);
-      border: 2px solid var(--bg);
-    }
-    .timeline-item:first-child::before { background: var(--accent); }
-    .timeline-period { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.25rem; }
-    .timeline-role { font-size: 1.05rem; font-weight: 600; }
-    .timeline-company { color: var(--accent); font-weight: 600; }
-    .timeline-desc { font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.375rem; line-height: 1.6; }
-
-    /* Skills */
-    .skills-category { margin-bottom: 1.25rem; }
-    .skills-category-name { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
-    .skills-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .skill-tag {
-      background: var(--tag-bg);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.375rem 0.75rem;
-      font-size: 0.825rem;
-      color: var(--text);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* Featured */
-    .featured-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1rem;
-    }
-    .featured-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem;
-      transition: border-color 0.2s, transform 0.2s;
-      display: flex;
-      flex-direction: column;
-    }
-    .featured-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .featured-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    .featured-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.4; }
-    .featured-desc { font-size: 0.825rem; color: var(--text-secondary); line-height: 1.5; flex: 1; }
-    .featured-link {
-      margin-top: 0.75rem;
-      font-size: 0.8rem;
-      color: var(--accent);
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    /* Projects */
-    .project-group { margin-bottom: 1.5rem; }
-    .project-group-name { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
-    .project-links { margin-top: 0.75rem; display: flex; gap: 1rem; font-size: 0.8rem; font-weight: 600; }
-
-    /* Footer */
-    .footer {
-      border-top: 1px solid var(--border);
-      text-align: center;
-      padding: 2rem;
-      color: var(--text-secondary);
-      font-size: 0.8rem;
-    }
-    .footer a { color: var(--text-secondary); }
-    .footer a:hover { color: var(--accent); }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .main {
-        grid-template-columns: 1fr;
-        padding: 1.5rem 1rem;
-        gap: 2rem;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>오준석 · Oh Junseok — Cloud Architect &amp; AI Builder</title>
+    <meta
+      name="description"
+      content="AWS Sr. Solutions Architect 오준석의 프로젝트와 기록. LLM 벤치마크, AI 에이전트, 클라우드 플랫폼, Kubernetes와 오픈소스 도구를 만들고 배운 것을 나눕니다."
+    />
+    <link rel="canonical" href="https://www.atomai.click/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta
+      property="og:title"
+      content="Oh Junseok — Cloud architect. Hands-on builder."
+    />
+    <meta
+      property="og:description"
+      content="클라우드 인프라에서 AI 에이전트까지. 직접 만들고, 측정하고, 배운 것을 나눕니다."
+    />
+    <meta property="og:url" content="https://www.atomai.click/" />
+    <meta
+      property="og:image"
+      content="https://www.atomai.click/assets/img/social-card.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="assets/img/me.jpg" />
+    <link
+      rel="preload"
+      href="assets/fonts/PretendardVariable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6267917556914416"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-GWVLEW5JLL"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
       }
-      .sidebar { position: static; }
-      .header { padding: 1rem; }
-      .featured-grid { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Header -->
-  <header class="header">
-    <div class="header-name">Oh Junseok</div>
-    <nav class="header-links">
-      <a href="https://github.com/Atom-oh" target="_blank" rel="noopener">
-        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-        GitHub
-      </a>
-      <a href="https://www.linkedin.com/in/oh-junseok/" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
-    </nav>
-  </header>
-
-  <!-- Main -->
-  <div class="main">
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-card">
-        <img class="avatar" src="assets/img/me.jpg" alt="Oh Junseok">
-        <h1 class="sidebar-name">Oh Junseok</h1>
-        <div class="sidebar-title">Sr. Solutions Architect</div>
-        <div class="sidebar-org">Amazon Web Services</div>
-        <div class="sidebar-location">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Seoul, South Korea
+      gtag("js", new Date());
+      gtag("config", "G-GWVLEW5JLL");
+    </script>
+    <style>
+      @font-face {
+        font-family: Pretendard;
+        font-style: normal;
+        font-weight: 45 920;
+        font-display: swap;
+        src: url("assets/fonts/PretendardVariable.woff2") format("woff2");
+      }
+      :root {
+        --paper: #fff;
+        --ink: #20231f;
+        --muted: #62665e;
+        --line: #e1e4dc;
+        --wash: #f0f2eb;
+        --lime: #d4ef86;
+        --radius: 24px;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 100px;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family:
+          Pretendard,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        font-size: 17px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3,
+      p,
+      figure {
+        margin: 0;
+      }
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+        word-break: keep-all;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+      }
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid #567b17;
+        outline-offset: 5px;
+      }
+      ::selection {
+        background: var(--lime);
+        color: var(--ink);
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      .container {
+        width: min(1240px, calc(100% - 96px));
+        margin-inline: auto;
+      }
+      .icon {
+        width: 20px;
+        height: 20px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex-shrink: 0;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .skip-link {
+        position: fixed;
+        top: -100px;
+        left: 20px;
+        z-index: 100;
+        background: var(--ink);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+      }
+      .skip-link:focus {
+        top: 16px;
+      }
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255, 255, 255, 0.96);
+        border-bottom: 1px solid var(--line);
+      }
+      .header-inner {
+        min-height: 88px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        font-size: 21px;
+        font-weight: 730;
+        letter-spacing: -0.7px;
+        white-space: nowrap;
+      }
+      .brand-mark {
+        width: 30px;
+        height: 30px;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        font-size: 14px;
+        font-weight: 540;
+      }
+      .nav a {
+        padding-block: 12px;
+      }
+      .nav a:hover {
+        color: #567b17;
+      }
+      .nav .nav-github {
+        display: inline-flex;
+        gap: 7px;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 100px;
+        padding: 9px 18px;
+        margin-left: 6px;
+      }
+      .nav-github .icon {
+        width: 16px;
+        height: 16px;
+      }
+      .menu-toggle {
+        display: none;
+        border: 1px solid var(--line);
+        border-radius: 100px;
+        background: white;
+        padding: 8px 14px;
+        font-size: 14px;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+      }
+      .hero {
+        padding-block: 88px 82px;
+      }
+      .hero h1 {
+        font-size: clamp(64px, 7.5vw, 104px);
+        line-height: 1.035;
+        font-weight: 680;
+        letter-spacing: -5.5px;
+      }
+      .hero h1 span {
+        display: block;
+      }
+      .hero h1 .secondary {
+        color: #70766b;
+      }
+      .hero-bottom {
+        margin-top: 38px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 40px;
+      }
+      .hero-description {
+        font-size: 19px;
+        color: var(--muted);
+        line-height: 1.8;
+        word-break: keep-all;
+      }
+      .hero-description strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        min-height: 48px;
+        padding: 13px 22px;
+        border: 1px solid transparent;
+        border-radius: 100px;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.4;
+        transition:
+          background 0.18s,
+          transform 0.18s;
+      }
+      .button:hover {
+        transform: translateY(-2px);
+      }
+      .button-dark {
+        background: var(--ink);
+        color: white;
+      }
+      .button-dark:hover {
+        background: #3d4535;
+      }
+      .button-lime {
+        background: var(--lime);
+        color: var(--ink);
+      }
+      .button-lime:hover {
+        background: #e1f8a5;
+      }
+      .hero .button {
+        margin-top: 24px;
+      }
+      .identity {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding-bottom: 4px;
+        flex-shrink: 0;
+      }
+      .identity img {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        object-fit: cover;
+        filter: grayscale(1);
+      }
+      .identity-name {
+        font-size: 15px;
+        font-weight: 650;
+        margin-bottom: 3px;
+      }
+      .identity-role {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .section {
+        padding-block: 68px 76px;
+        border-top: 1px solid var(--line);
+      }
+      .section-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 32px;
+        align-items: flex-end;
+        margin-bottom: 32px;
+      }
+      .eyebrow {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 1.8px;
+        font-weight: 650;
+        text-transform: uppercase;
+        margin-bottom: 13px;
+        color: var(--muted);
+      }
+      .section h2 {
+        font-size: 40px;
+        letter-spacing: -1.8px;
+        font-weight: 650;
+      }
+      .section-intro {
+        font-size: 15px;
+        color: var(--muted);
+        max-width: 360px;
+        word-break: keep-all;
+      }
+      .text-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.6;
+        min-height: 44px;
+      }
+      .text-link:hover {
+        text-decoration: underline;
+        text-underline-offset: 5px;
+      }
+      .text-link .icon {
+        width: 16px;
+        height: 16px;
+      }
+      .benchmark {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        background: #242b23;
+        color: #fff;
+        border-radius: var(--radius);
+        overflow: hidden;
+      }
+      .benchmark-copy {
+        padding: 44px 36px 40px 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .featured-label {
+        color: var(--lime);
+        font-size: 11px;
+        font-weight: 550;
+        letter-spacing: 1.5px;
+        margin-bottom: 22px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .featured-label::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+      .benchmark h3 {
+        font-size: 28px;
+        letter-spacing: -0.8px;
+        font-weight: 650;
+      }
+      .benchmark-headline {
+        font-size: 28px;
+        line-height: 1.45;
+        font-weight: 500;
+        letter-spacing: -1px;
+        margin-top: 18px;
+        word-break: keep-all;
+      }
+      .benchmark-description {
+        color: #c5cdbf;
+        font-size: 15px;
+        margin-top: 17px;
+        line-height: 1.8;
+        word-break: keep-all;
+      }
+      .tech-line {
+        font-size: 11px;
+        letter-spacing: 0.2px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 14px;
+        color: var(--muted);
+      }
+      .benchmark .tech-line {
+        margin-top: 24px;
+        color: #c5cdbf;
+      }
+      .project-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+      }
+      .benchmark .project-actions {
+        margin-top: auto;
+        padding-top: 30px;
+      }
+      .benchmark-visual {
+        position: relative;
+        align-self: stretch;
+        min-width: 0;
+        background: #dfe5d6;
+        margin: 24px 24px 24px 0;
+        border-radius: 16px;
+        padding: 28px 22px 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .browser-bar {
+        background: #fff;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border-radius: 9px 9px 0 0;
+        font-size: 10px;
+        color: #676d61;
+        border-bottom: 1px solid #e5e6dd;
+      }
+      .browser-dots {
+        display: flex;
+        gap: 4px;
+      }
+      .browser-dots i {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #c8cbbf;
+      }
+      .browser-address {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .benchmark-visual img {
+        width: 100%;
+        height: 328px;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 0 0 8px 8px;
+      }
+      .benchmark-visual figcaption {
+        font-size: 10px;
+        color: #52594a;
+        margin-top: 14px;
+        text-align: center;
+      }
+      .selected-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        margin-top: 32px;
+      }
+      .work {
+        min-width: 0;
+      }
+      .work-visual {
+        display: block;
+        height: 240px;
+        border-radius: 17px;
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.2s;
+      }
+      a.work-visual:hover {
+        transform: translateY(-3px);
+      }
+      .work-image {
+        padding: 24px 22px 0;
+        background: #f0ede7;
+      }
+      .work-image.platform {
+        background: #e8edf3;
+      }
+      .work-image img {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 8px 8px 0 0;
+        box-shadow: 0 5px 18px #232b2110;
+      }
+      .work-type {
+        margin-top: 20px;
+        margin-bottom: 8px;
+        font-size: 10px;
+        color: var(--muted);
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .work h3 {
+        font-size: 22px;
+        letter-spacing: -0.6px;
+      }
+      .work-description {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.8;
+        margin-top: 12px;
+        word-break: keep-all;
+      }
+      .work .project-actions {
+        gap: 22px;
+        margin-top: 12px;
+      }
+      .work .text-link {
+        font-size: 12px;
+      }
+      .inferplane-visual {
+        background: #ebeee4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .architecture {
+        width: 100%;
+        height: 100%;
+        padding: 16px 18px;
+      }
+      .architecture text {
+        font-family: Pretendard, sans-serif;
+        fill: #30382b;
+        font-size: 11px;
+        text-anchor: middle;
+      }
+      .architecture .diagram-title {
+        font-size: 14px;
+        font-weight: 650;
+      }
+      .architecture .diagram-small {
+        font-size: 9px;
+        fill: #5b6451;
+      }
+      .architecture .node {
+        fill: #fff;
+        stroke: #cfd7c1;
+      }
+      .architecture .node-active {
+        fill: #d4ef86;
+        stroke: #b2ca71;
+      }
+      .architecture .connection {
+        fill: none;
+        stroke: #7a8767;
+        stroke-width: 1.3;
+      }
+      .architecture .policy {
+        stroke-dasharray: 3 4;
+      }
+      .explorer-head {
+        align-items: center;
+      }
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-bottom: 28px;
+      }
+      .filter {
+        border: 1px solid var(--line);
+        border-radius: 100px;
+        background: white;
+        padding: 9px 16px;
+        min-height: 44px;
+        font-size: 13px;
+        font-weight: 530;
+        line-height: 1.4;
+      }
+      .filter[aria-pressed="true"] {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: white;
+      }
+      .filter:hover {
+        border-color: var(--ink);
+      }
+      .project-count {
+        margin-left: auto;
+        align-self: center;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .project-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 48px;
+      }
+      .project {
+        padding: 25px 0 23px;
+        border-top: 1px solid var(--line);
+        min-width: 0;
+      }
+      .project-top {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+      .project h3 {
+        font-size: 18px;
+        letter-spacing: -0.3px;
+        overflow-wrap: anywhere;
+        word-break: normal;
+      }
+      .project-kind {
+        flex-shrink: 0;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: var(--muted);
+        line-height: 2.2;
+      }
+      .project p {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.75;
+        word-break: keep-all;
+      }
+      .project .project-actions {
+        margin-top: 9px;
+        gap: 18px;
+      }
+      .project .text-link {
+        min-height: 36px;
+        font-size: 12px;
+      }
+      .fork-note {
+        font-size: 10px;
+        color: var(--muted);
+        margin-left: auto;
+      }
+      .fork-note a {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 96px;
+      }
+      .about-intro h2 {
+        line-height: 1.35;
+      }
+      .about-intro p {
+        margin-top: 24px;
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.9;
+        word-break: keep-all;
+      }
+      .about-intro p + p {
+        margin-top: 14px;
+      }
+      .about-person {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin-top: 30px;
+      }
+      .about-person img {
+        width: 86px;
+        height: 100px;
+        border-radius: 12px;
+        object-fit: cover;
+        filter: grayscale(1);
+      }
+      .about-person strong {
+        display: block;
+        font-size: 16px;
+      }
+      .about-person .text-link {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .experience {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .experience li {
+        padding: 20px 0;
+        border-top: 1px solid var(--line);
+      }
+      .experience li:first-child {
+        padding-top: 0;
+        border-top: 0;
+      }
+      .experience-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+      }
+      .experience h3 {
+        font-size: 20px;
+        letter-spacing: -0.4px;
+      }
+      .experience time,
+      .experience-period {
+        font-size: 11px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .experience-role {
+        margin-top: 6px;
+        font-size: 13px;
+        font-weight: 550;
+      }
+      .experience-description {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.8;
+        word-break: keep-all;
+      }
+      .current-company {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .current-company::after {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #577c27;
+      }
+      .expertise {
+        margin-top: 48px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        padding-top: 32px;
+        border-top: 1px solid var(--line);
+      }
+      .expertise h3 {
+        font-size: 14px;
+        font-weight: 650;
+      }
+      .expertise p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.9;
+        margin-top: 12px;
+      }
+      .writing-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .writing-list li {
+        border-top: 1px solid var(--line);
+      }
+      .writing-link {
+        display: grid;
+        grid-template-columns: 125px 1fr 180px 24px;
+        gap: 24px;
+        align-items: center;
+        padding: 28px 0;
+        transition: color 0.18s;
+      }
+      .writing-link:hover {
+        color: #54761f;
+      }
+      .writing-link.is-record:hover {
+        color: inherit;
+      }
+      .writing-type {
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+      }
+      .writing-link h3 {
+        font-size: 19px;
+        line-height: 1.5;
+        font-weight: 570;
+        letter-spacing: -0.3px;
+      }
+      .writing-context {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .personal-note {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 22px 26px;
+        margin-top: 14px;
+        border-radius: 14px;
+        background: var(--wash);
+      }
+      .personal-note p {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .personal-note strong {
+        color: var(--ink);
+        font-weight: 580;
+      }
+      .contact {
+        background: var(--wash);
+        margin-top: 4px;
+      }
+      .contact-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+        padding-block: 60px;
+      }
+      .contact h2 {
+        font-size: 38px;
+        line-height: 1.35;
+        font-weight: 600;
+        letter-spacing: -1.5px;
+      }
+      .contact p {
+        color: var(--muted);
+        font-size: 14px;
+        margin-top: 16px;
+      }
+      .footer {
+        border-top: 1px solid #dce0d4;
+        background: var(--wash);
+      }
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        padding-block: 24px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .footer-links {
+        display: flex;
+        gap: 24px;
+      }
+      .footer-links a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+      }
+      .footer a:hover {
+        color: var(--ink);
+      }
+      @media (min-width: 1440px) {
+        .hero {
+          padding-top: 96px;
+        }
+      }
+      @media (max-width: 1024px) {
+        .container {
+          width: calc(100% - 64px);
+        }
+        .hero h1 {
+          font-size: clamp(62px, 8.3vw, 90px);
+          letter-spacing: -4px;
+        }
+        .hero-bottom {
+          align-items: center;
+        }
+        .hero-description {
+          font-size: 17px;
+        }
+        .identity {
+          gap: 12px;
+        }
+        .identity img {
+          width: 52px;
+          height: 52px;
+        }
+        .benchmark {
+          grid-template-columns: 1fr 1fr;
+        }
+        .benchmark-copy {
+          padding: 32px 26px;
+        }
+        .benchmark-headline {
+          font-size: 25px;
+        }
+        .benchmark-visual {
+          padding: 18px 14px;
+          margin: 18px 18px 18px 0;
+        }
+        .benchmark-visual img {
+          height: 310px;
+        }
+        .selected-grid {
+          gap: 20px;
+        }
+        .work-visual {
+          height: 200px;
+        }
+        .work h3 {
+          font-size: 20px;
+        }
+        .work-image {
+          padding: 20px 16px 0;
+        }
+        .about-grid {
+          gap: 48px;
+        }
+        .section h2 {
+          font-size: 34px;
+        }
+        .writing-link {
+          grid-template-columns: 100px 1fr 140px 20px;
+          gap: 18px;
+        }
+      }
+      @media (max-width: 768px) {
+        html {
+          scroll-padding-top: 88px;
+        }
+        .container {
+          width: calc(100% - 40px);
+        }
+        .header-inner {
+          min-height: 72px;
+          flex-wrap: wrap;
+          gap: 0;
+        }
+        .brand {
+          font-size: 19px;
+        }
+        .brand-mark {
+          width: 26px;
+          height: 26px;
+        }
+        .nav {
+          width: 100%;
+          flex-wrap: wrap;
+          gap: 4px 22px;
+          padding-bottom: 14px;
+          font-size: 13px;
+        }
+        .nav .nav-github {
+          margin-left: 0;
+          padding: 7px 13px;
+        }
+        .js .menu-toggle {
+          display: inline-flex;
+        }
+        .js .nav {
+          display: none;
+        }
+        .js .nav.is-open {
+          display: flex;
+          padding-top: 8px;
+        }
+        .hero {
+          padding-block: 56px 50px;
+        }
+        .hero h1 {
+          font-size: clamp(41px, 8.7vw, 66px);
+          letter-spacing: -2.5px;
+          line-height: 1.1;
+        }
+        .hero-bottom {
+          margin-top: 25px;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 30px;
+        }
+        .hero-description {
+          font-size: 16px;
+        }
+        .hero-description br {
+          display: none;
+        }
+        .hero .button {
+          margin-top: 20px;
+        }
+        .identity {
+          padding-top: 22px;
+          border-top: 1px solid var(--line);
+          width: 100%;
+        }
+        .identity img {
+          width: 46px;
+          height: 46px;
+        }
+        .identity-name {
+          font-size: 13px;
+        }
+        .identity-role {
+          font-size: 11px;
+        }
+        .identity-role br {
+          display: none;
+        }
+        .identity-role span {
+          margin-left: 7px;
+        }
+        .section {
+          padding-block: 44px 48px;
+        }
+        .section-top {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 18px;
+          margin-bottom: 25px;
+        }
+        .section h2 {
+          font-size: 29px;
+          letter-spacing: -1.2px;
+        }
+        .section-intro {
+          font-size: 14px;
+        }
+        .eyebrow {
+          font-size: 10px;
+          margin-bottom: 11px;
+        }
+        .benchmark {
+          grid-template-columns: 1fr;
+          border-radius: 20px;
+        }
+        .benchmark-copy {
+          padding: 30px 26px;
+        }
+        .benchmark h3 {
+          font-size: 26px;
+        }
+        .benchmark-headline {
+          font-size: 26px;
+        }
+        .benchmark-description {
+          font-size: 14px;
+        }
+        .benchmark .project-actions {
+          padding-top: 25px;
+          gap: 22px;
+        }
+        .benchmark-visual {
+          margin: 0 16px 16px;
+          padding: 20px 16px 14px;
+        }
+        .benchmark-visual img {
+          height: auto;
+          aspect-ratio: 1.4;
+          object-fit: cover;
+        }
+        .benchmark-visual figcaption {
+          font-size: 9px;
+        }
+        .selected-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          margin-top: 32px;
+        }
+        .work-visual {
+          height: 250px;
+        }
+        .work-image {
+          padding: 24px 24px 0;
+        }
+        .work h3 {
+          font-size: 22px;
+        }
+        .work-type {
+          margin-top: 18px;
+        }
+        .work-description {
+          margin-top: 9px;
+        }
+        .work .project-actions {
+          margin-top: 7px;
+        }
+        .explorer-head {
+          gap: 12px;
+        }
+        .filters {
+          gap: 8px;
+          margin-bottom: 20px;
+        }
+        .filter {
+          font-size: 12px;
+          padding: 8px 13px;
+        }
+        .project-count {
+          width: 100%;
+          margin-top: 5px;
+          font-size: 11px;
+        }
+        .project-list {
+          grid-template-columns: 1fr;
+        }
+        .project {
+          padding-block: 23px 20px;
+        }
+        .project h3 {
+          font-size: 18px;
+        }
+        .project-kind {
+          font-size: 9px;
+        }
+        .project p {
+          font-size: 14px;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 44px;
+        }
+        .about-intro h2 {
+          font-size: 32px;
+        }
+        .about-intro p {
+          font-size: 15px;
+          margin-top: 20px;
+        }
+        .experience h3 {
+          font-size: 18px;
+        }
+        .expertise {
+          grid-template-columns: 1fr;
+          gap: 22px;
+          margin-top: 30px;
+          padding-top: 28px;
+        }
+        .expertise p {
+          margin-top: 7px;
+        }
+        .writing-link {
+          grid-template-columns: 1fr 20px;
+          gap: 8px 20px;
+          padding-block: 24px;
+        }
+        .writing-type {
+          grid-column: 1;
+          font-size: 10px;
+        }
+        .writing-link h3 {
+          grid-column: 1;
+          grid-row: 2;
+          font-size: 17px;
+        }
+        .writing-context {
+          grid-column: 1;
+          font-size: 11px;
+        }
+        .writing-link > .icon {
+          grid-column: 2;
+          grid-row: 2;
+        }
+        .personal-note {
+          flex-direction: column;
+          gap: 12px;
+          align-items: flex-start;
+          padding: 22px;
+        }
+        .personal-note p {
+          font-size: 13px;
+        }
+        .contact-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          padding-block: 44px;
+          gap: 26px;
+        }
+        .contact h2 {
+          font-size: 30px;
+        }
+        .contact p {
+          font-size: 13px;
+        }
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 4px;
+          padding-block: 22px;
+        }
+        .footer-links {
+          gap: 24px;
+        }
+      }
+      @media (max-width: 374px) {
+        .container {
+          width: calc(100% - 32px);
+        }
+        .hero h1 {
+          font-size: 36px;
+          letter-spacing: -2px;
+        }
+        .identity-role span {
+          display: block;
+          margin-left: 0;
+        }
+        .project-top {
+          flex-direction: column;
+          gap: 3px;
+        }
+        .experience-heading {
+          flex-direction: column;
+          gap: 5px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          transition: none !important;
+          animation: none !important;
+        }
+        .button:hover,
+        a.work-visual:hover {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="0"
+      height="0"
+      aria-hidden="true"
+      style="position: absolute"
+    >
+      <symbol id="arrow-up-right" viewBox="0 0 24 24">
+        <path d="M6 18 18 6M6 6h12v12" />
+      </symbol>
+      <symbol id="arrow-down" viewBox="0 0 24 24">
+        <path d="M12 4v16m-6-6 6 6 6-6" />
+      </symbol>
+      <symbol id="menu-icon" viewBox="0 0 24 24">
+        <path d="M4 8h16M4 16h16" />
+      </symbol>
+    </svg>
+    <header class="header">
+      <div class="container header-inner">
+        <a class="brand" href="#main" aria-label="Oh Junseok 홈">
+          <svg
+            class="brand-mark"
+            viewBox="0 0 32 32"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M16 2v28M2 16h28M6.1 6.1l19.8 19.8M6.1 25.9 25.9 6.1"
+              stroke="currentColor"
+              stroke-width="3.4"
+            />
+          </svg>
+          junseok oh.
+        </a>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="navigation"
+        >
+          메뉴
+          <svg class="icon" aria-hidden="true"><use href="#menu-icon" /></svg>
+        </button>
+        <nav id="navigation" class="nav" aria-label="메인 메뉴">
+          <a href="#projects">Projects</a><a href="#about">About</a
+          ><a href="#writing">Writing &amp; Talks</a>
+          <a
+            class="nav-github"
+            href="https://github.com/Atom-oh"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub
+            <svg class="icon" aria-hidden="true">
+              <use href="#arrow-up-right" /></svg
+          ></a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero container" aria-labelledby="hero-title">
+        <h1 id="hero-title" lang="en">
+          <span>Cloud architect.</span
+          ><span class="secondary">Hands-on builder.</span>
+        </h1>
+        <div class="hero-bottom">
+          <div>
+            <p class="hero-description">
+              <strong>안녕하세요, 오준석입니다.</strong> 클라우드 인프라에서 AI
+              에이전트까지,<br />
+              직접 만들고, 측정하고, 배운 것을 나눕니다.
+            </p>
+            <a class="button button-dark" href="#projects"
+              >프로젝트 둘러보기
+              <svg class="icon" aria-hidden="true">
+                <use href="#arrow-down" /></svg
+            ></a>
+          </div>
+          <div class="identity">
+            <img
+              src="assets/img/me.jpg"
+              alt="오준석"
+              width="64"
+              height="64"
+              fetchpriority="high"
+            />
+            <div>
+              <p class="identity-name">오준석 · Oh Junseok</p>
+              <p class="identity-role">
+                Sr. Solutions Architect @ AWS<br /><span
+                  >Seoul, South Korea</span
+                >
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="sidebar-links">
-          <a href="https://github.com/Atom-oh" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            github.com/Atom-oh
-          </a>
-          <a href="https://www.linkedin.com/in/oh-junseok/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            linkedin.com/in/oh-junseok
-          </a>
+      </section>
+      <section
+        class="section container"
+        id="projects"
+        aria-labelledby="projects-title"
+      >
+        <div class="section-top">
+          <div>
+            <span class="eyebrow">Selected work</span>
+            <h2 id="projects-title">요즘, 만들고 있는 것들.</h2>
+          </div>
+          <p class="section-intro">
+            모델을 평가하는 실험부터 운영을 바꾸는 도구까지.<br />직접 코드로
+            풀어 가는 문제들입니다.
+          </p>
+        </div>
+        <article class="benchmark">
+          <div class="benchmark-copy">
+            <span class="featured-label"
+              >FEATURED PROJECT · LLM EVALUATION</span
+            >
+            <h3>llm-benchmark</h3>
+            <p class="benchmark-headline">
+              좋은 모델을 고르는 일,<br />직접 비교하는 것부터.
+            </p>
+            <p class="benchmark-description">
+              금융 문서 번역의 품질, 지연시간, 추정 비용을 같은 기준으로
+              비교합니다. 평가 방법과 원본 결과를 함께 공개해 모델 선택의 근거를
+              남깁니다.
+            </p>
+            <div class="tech-line">
+              <span>Python</span><span>Amazon Bedrock</span
+              ><span>LLM-as-a-Judge</span>
+            </div>
+            <div class="project-actions">
+              <a
+                class="button button-lime"
+                href="https://inferplane.github.io/llm-benchmark/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >벤치마크 열기
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+              <a
+                class="text-link"
+                href="https://github.com/inferplane/llm-benchmark"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </div>
+          <figure class="benchmark-visual">
+            <div class="browser-bar" aria-hidden="true">
+              <span class="browser-dots"><i></i><i></i><i></i></span
+              ><span class="browser-address"
+                >inferplane.github.io/llm-benchmark</span
+              >
+            </div>
+            <a
+              href="https://inferplane.github.io/llm-benchmark/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LLM 벤치마크 실제 비교 리포트 열기"
+              ><img
+                src="assets/img/projects/llm-benchmark.webp"
+                alt="LLM Translation Ledger의 모델별 비용·품질 비교 차트"
+                width="1120"
+                height="719"
+                loading="lazy"
+            /></a>
+            <figcaption>
+              실제 공개 리포트 · 2026.09 캡처 · 평가 조건과 한계는 리포트에 명시
+            </figcaption>
+          </figure>
+        </article>
+        <div class="selected-grid">
+          <article class="work">
+            <a
+              class="work-visual inferplane-visual"
+              href="https://github.com/inferplane/inferplane"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="inferplane GitHub 저장소 열기"
+            >
+              <svg
+                class="architecture"
+                viewBox="0 0 360 230"
+                role="img"
+                aria-labelledby="architecture-title"
+              >
+                <title id="architecture-title">
+                  inferplaned가 정책과 예산을 배포하고, 로컬 mayu가 요청을 모델
+                  제공자로 전달하는 inferplane 구성
+                </title>
+                <rect
+                  class="node"
+                  x="110"
+                  y="13"
+                  width="140"
+                  height="48"
+                  rx="9"
+                />
+                <text class="diagram-title" x="180" y="34">inferplaned</text>
+                <text class="diagram-small" x="180" y="49">
+                  policy &amp; budget
+                </text>
+                <path class="connection policy" d="M180 61v41" />
+                <path class="connection" d="m176 98 4 4 4-4" />
+                <rect
+                  class="node"
+                  x="12"
+                  y="106"
+                  width="90"
+                  height="46"
+                  rx="9"
+                />
+                <text x="57" y="134">Coding agent</text>
+                <path class="connection" d="M102 129h27m-4-4 4 4-4 4" />
+                <rect
+                  class="node-active"
+                  x="131"
+                  y="106"
+                  width="98"
+                  height="46"
+                  rx="9"
+                />
+                <text class="diagram-title" x="180" y="126">mayu</text>
+                <text class="diagram-small" x="180" y="140">
+                  local data plane
+                </text>
+                <path class="connection" d="M229 129h26m-4-4 4 4-4 4" />
+                <rect
+                  class="node"
+                  x="257"
+                  y="106"
+                  width="91"
+                  height="46"
+                  rx="9"
+                />
+                <text x="302" y="134">Providers</text>
+                <text class="diagram-small" x="180" y="192">
+                  LOCAL ENFORCEMENT. CENTRAL POLICY.
+                </text>
+                <text class="diagram-small" x="180" y="211">
+                  Anthropic · Bedrock · OpenAI-compatible
+                </text>
+              </svg>
+            </a>
+            <p class="work-type">LLM Governance · Alpha</p>
+            <h3>inferplane</h3>
+            <p class="work-description">
+              모델 라우팅, 사용량 추적, 예산 정책을 다루는 LLM 거버넌스
+              프로젝트. 중앙 제어부와 로컬 실행부를 분리하는 구조를 개발하고
+              있습니다.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://github.com/inferplane/inferplane"
+                target="_blank"
+                rel="noopener noreferrer"
+                >프로젝트 보기
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </article>
+          <article class="work">
+            <a
+              class="work-visual work-image"
+              href="https://www.atomai.click/oh-my-cloud-skills/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img
+                src="assets/img/projects/cloud-skills.webp"
+                alt="oh-my-cloud-skills 공개 문서: 클라우드 작업과 콘텐츠 제작을 위한 플러그인 모음"
+                width="1120"
+                height="747"
+                loading="lazy"
+            /></a>
+            <p class="work-type">Developer Tools · Open Source</p>
+            <h3>oh-my-cloud-skills</h3>
+            <p class="work-description">
+              Claude Code와 Codex에서 쓰는 클라우드 워크플로 모음. AWS 운영
+              진단, 콘텐츠 제작, 프로젝트 설정, 여러 AI의 협업을 재사용 가능한
+              스킬로 만듭니다.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://www.atomai.click/oh-my-cloud-skills/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >문서 보기
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><a
+                class="text-link"
+                href="https://github.com/Atom-oh/oh-my-cloud-skills"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </article>
+          <article class="work">
+            <a
+              class="work-visual work-image platform"
+              href="https://www.atomai.click/AgenticAI-Platform/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img
+                src="assets/img/projects/agentic-platform.webp"
+                alt="Agentic AI 플랫폼 엔지니어링 가이드북: 지연, 정확도, 캐싱, 컨텍스트, 비용과 권한 제어"
+                width="1120"
+                height="778"
+                loading="lazy"
+            /></a>
+            <p class="work-type">AI Agents · Platform Engineering</p>
+            <h3>AgenticAI-Platform</h3>
+            <p class="work-description">
+              에이전트를 만드는 것에서 운영하는 것으로. AgentCore 기반 플랫폼
+              설계와 거버넌스를 가이드북으로 정리하고, 별도 데모로 구현을
+              탐구합니다.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://www.atomai.click/AgenticAI-Platform/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >가이드북
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><a
+                class="text-link"
+                href="https://github.com/Atom-oh/AgenticAI-Platform"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="section container" aria-labelledby="explore-title">
+        <div class="section-top explorer-head">
+          <div>
+            <span class="eyebrow">Explore more</span>
+            <h2 id="explore-title">실험은 계속됩니다.</h2>
+          </div>
+          <a
+            class="text-link"
+            href="https://github.com/Atom-oh?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            >전체 GitHub 리포지토리
+            <svg class="icon" aria-hidden="true">
+              <use href="#arrow-up-right" /></svg
+          ></a>
+        </div>
+        <div
+          class="filters"
+          role="group"
+          aria-label="프로젝트 분야 필터"
+          hidden
+        >
+          <button
+            class="filter"
+            type="button"
+            data-filter="all"
+            aria-pressed="true"
+          >
+            전체
+          </button>
+          <button
+            class="filter"
+            type="button"
+            data-filter="ai"
+            aria-pressed="false"
+          >
+            AI &amp; Agents
+          </button>
+          <button
+            class="filter"
+            type="button"
+            data-filter="cloud"
+            aria-pressed="false"
+          >
+            Cloud &amp; Infra
+          </button>
+          <button
+            class="filter"
+            type="button"
+            data-filter="tools"
+            aria-pressed="false"
+          >
+            Developer Tools
+          </button>
+          <button
+            class="filter"
+            type="button"
+            data-filter="learning"
+            aria-pressed="false"
+          >
+            Learning &amp; Sharing
+          </button>
+          <span
+            class="project-count"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          ></span>
+        </div>
+        <div class="project-list" id="project-list">
+          <article class="project" data-category="cloud learning">
+            <div class="project-top">
+              <h3>kubernetes-docs</h3>
+              <span class="project-kind">Knowledge Base</span>
+            </div>
+            <p>
+              Kubernetes와 Amazon EKS를 중심으로 네트워크, 보안, GitOps, AI/ML
+              운영까지 연결하는 심화 기술 문서.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://www.atomai.click/kubernetes-docs/ko/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >문서
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><a
+                class="text-link"
+                href="https://github.com/Atom-oh/kubernetes-docs"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </article>
+          <article class="project" data-category="cloud">
+            <div class="project-top">
+              <h3>multi-region-architecture</h3>
+              <span class="project-kind">Architecture</span>
+            </div>
+            <p>
+              멀티 리전 쇼핑몰을 통해 고가용성, 장애 대응, GitOps 배포를
+              구현하는 Terraform·Kubernetes 레퍼런스.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://www.atomai.click/multi-region-architecture/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >아키텍처
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><a
+                class="text-link"
+                href="https://github.com/Atom-oh/multi-region-architecture"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </article>
+          <article class="project" data-category="cloud ai">
+            <div class="project-top">
+              <h3>awsops</h3>
+              <span class="project-kind">Cloud Operations</span>
+            </div>
+            <p>
+              AWS와 Kubernetes의 자원·비용·운영 지표를 모아 보고, 자연어로
+              인프라를 분석하는 운영 대시보드.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://www.atomai.click/awsops/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >소개
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><a
+                class="text-link"
+                href="https://github.com/Atom-oh/awsops"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><a
+                class="text-link"
+                href="https://awsops.atomai.click/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >데모 · 로그인
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><span class="fork-note"
+                ><a
+                  href="https://github.com/whchoi98/awsops"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >whchoi98</a
+                >
+                기반 포크</span
+              >
+            </div>
+          </article>
+          <article class="project" data-category="cloud">
+            <div class="project-top">
+              <h3>aws-ec2-benchmark</h3>
+              <span class="project-kind">Benchmark</span>
+            </div>
+            <p>
+              EC2와 Graviton의 컴퓨팅 성능을 반복 측정하고, 웹
+              서버·캐시·애플리케이션 워크로드 결과를 비교하는 벤치마크.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://benchmark.aws.atomai.click/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >벤치마크
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><a
+                class="text-link"
+                href="https://github.com/Atom-oh/aws-ec2-benchmark"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </article>
+          <article class="project" data-category="ai tools">
+            <div class="project-top">
+              <h3>cc-on-bedrock</h3>
+              <span class="project-kind">Developer Platform</span>
+            </div>
+            <p>
+              Amazon Bedrock 기반 Claude Code를 여러 사용자가 활용하도록 개발
+              환경, 인증, 사용량과 예산 관리를 함께 제공하는 플랫폼.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://www.atomai.click/cc-on-bedrock/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >소개
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><a
+                class="text-link"
+                href="https://github.com/Atom-oh/cc-on-bedrock"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><span class="fork-note"
+                ><a
+                  href="https://github.com/whchoi98/cc-on-bedrock"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >whchoi98</a
+                >
+                기반 포크</span
+              >
+            </div>
+          </article>
+          <article class="project" data-category="tools ai">
+            <div class="project-top">
+              <h3>claude-code-usage-dashboard</h3>
+              <span class="project-kind">Observability</span>
+            </div>
+            <p>
+              OpenTelemetry와 ClickHouse로 Claude Code 사용량을 수집하고, 비용과
+              도입 현황을 시각화하는 대시보드.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://www.atomai.click/claude-code-usage-dashboard/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >소개
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><a
+                class="text-link"
+                href="https://github.com/Atom-oh/claude-code-usage-dashboard"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </article>
+          <article class="project" data-category="ai">
+            <div class="project-top">
+              <h3>ttobak</h3>
+              <span class="project-kind">AI Assistant</span>
+            </div>
+            <p>
+              한국어 회의의 실시간 자막, 화자 구분 전사, 편집 가능한 회의록을
+              연결하는 AI 회의 도우미.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://github.com/Atom-oh/ttobak"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </article>
+          <article class="project" data-category="ai tools">
+            <div class="project-top">
+              <h3>security-ops</h3>
+              <span class="project-kind">Security Research</span>
+            </div>
+            <p>
+              코드의 보안 문제 후보를 찾고, 반론 검토와 재검증을 거쳐 결과를
+              정리하는 다단계 AI 보안 분석 실험.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://github.com/Atom-oh/security-ops"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </article>
+          <article class="project" data-category="cloud tools">
+            <div class="project-top">
+              <h3>AWS-Demo-Platform</h3>
+              <span class="project-kind">Demo Operations</span>
+            </div>
+            <p>
+              여러 AWS 계정의 데모 프로젝트를 찾고, 실행·중지와 작업 이력을
+              관리하는 비프로덕션 환경 관리 플랫폼.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://github.com/Atom-oh/AWS-Demo-Platform"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </article>
+          <article class="project" data-category="tools ai">
+            <div class="project-top">
+              <h3>kiro-dashboard</h3>
+              <span class="project-kind">Observability</span>
+            </div>
+            <p>
+              Kiro 활동 리포트의 사용량·크레딧·모델 선택을 시각화하고, 자연어
+              질문으로 분석하는 대시보드.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://github.com/Atom-oh/kiro-dashboard"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><span class="fork-note"
+                ><a
+                  href="https://github.com/whchoi98/kiro-dashboard"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >whchoi98</a
+                >
+                기반 포크</span
+              >
+            </div>
+          </article>
+          <article class="project" data-category="learning cloud">
+            <div class="project-top">
+              <h3>eks-workshop</h3>
+              <span class="project-kind">Workshop</span>
+            </div>
+            <p>
+              EKS의 기본 운영부터 Auto Mode까지. 공식 워크숍의 핵심 모듈을
+              한국어 학습자에 맞춘 실습 가이드.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://www.atomai.click/eks-workshop/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >실습하기
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><a
+                class="text-link"
+                href="https://github.com/Atom-oh/eks-workshop"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </article>
+          <article class="project" data-category="learning ai">
+            <div class="project-top">
+              <h3>claude-code-workshop</h3>
+              <span class="project-kind">Workshop</span>
+            </div>
+            <p>
+              Claude Code의 개발 흐름과 활용 패턴을 실습으로 익히는 딥다이브
+              커리큘럼과 학습 자료.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://www.atomai.click/claude-code-workshop/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >워크숍
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><a
+                class="text-link"
+                href="https://github.com/Atom-oh/claude-code-workshop"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><span class="fork-note"
+                ><a
+                  href="https://github.com/whchoi98/claude-code-workshop"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >whchoi98</a
+                >
+                기반 포크</span
+              >
+            </div>
+          </article>
+          <article class="project" data-category="tools learning">
+            <div class="project-top">
+              <h3>claude-code-workshop-skills</h3>
+              <span class="project-kind">Plugins</span>
+            </div>
+            <p>
+              워크숍에서 바로 실습할 수 있는 플러그인 모음. 여러 AI의 협업과
+              작업 위임을 개발 과정에 연결합니다.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://www.atomai.click/claude-code-workshop-skills/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >소개
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><a
+                class="text-link"
+                href="https://github.com/Atom-oh/claude-code-workshop-skills"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </article>
+          <article class="project" data-category="tools learning">
+            <div class="project-top">
+              <h3>reactive_presentation</h3>
+              <span class="project-kind">Creative Tools</span>
+            </div>
+            <p>
+              인터랙티브 슬라이드와 시각적 설명을 웹에서 구성하는 프레젠테이션
+              프레임워크.
+            </p>
+            <div class="project-actions">
+              <a
+                class="text-link"
+                href="https://presentation.atomai.click/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >둘러보기
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg></a
+              ><a
+                class="text-link"
+                href="https://github.com/Atom-oh/reactive_presentation"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub
+                <svg class="icon" aria-hidden="true">
+                  <use href="#arrow-up-right" /></svg
+              ></a>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section
+        class="section container"
+        id="about"
+        aria-labelledby="about-title"
+      >
+        <div class="about-grid">
+          <div class="about-intro">
+            <span class="eyebrow">About me</span>
+            <h2 id="about-title">
+              설계에서 운영까지.<br />경험을 코드로 연결합니다.
+            </h2>
+            <p>
+              삼성전자의 소프트웨어 개발, 쿠팡·매스프레소·요기요의 서비스 운영을
+              거쳐, 지금은 AWS에서 고객의 클라우드 아키텍처 설계를 돕고
+              있습니다.
+            </p>
+            <p>
+              관심의 중심에는 늘 ‘실제로 잘 동작하는 시스템’이 있습니다.
+              Kubernetes와 멀티 리전 아키텍처에서 쌓은 경험을 AI 에이전트, 모델
+              평가, 개발 도구로 확장하고 있습니다.
+            </p>
+            <div class="about-person">
+              <img
+                src="assets/img/me.jpg"
+                alt="오준석 프로필 사진"
+                width="86"
+                height="100"
+                loading="lazy"
+              />
+              <div>
+                <strong>오준석 · Oh Junseok</strong
+                ><a
+                  class="text-link"
+                  href="https://www.linkedin.com/in/oh-junseok/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >LinkedIn에서 더 알아보기
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#arrow-up-right" /></svg
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 class="sr-only">경력</h3>
+            <ol class="experience">
+              <li>
+                <div class="experience-heading">
+                  <h3 class="current-company">Amazon Web Services</h3>
+                  <time datetime="2024-12">2024.12 — 현재</time>
+                </div>
+                <p class="experience-role">Sr. Solutions Architect</p>
+                <p class="experience-description">
+                  클라우드 네이티브 아키텍처 설계와 고객 기술 지원. EKS,
+                  컨테이너, IaC.
+                </p>
+              </li>
+              <li>
+                <div class="experience-heading">
+                  <h3>Yogiyo</h3>
+                  <span class="experience-period"
+                    ><time datetime="2023-02">2023.02</time> —
+                    <time datetime="2025-01">2025.01</time></span
+                  >
+                </div>
+                <p class="experience-role">DevOps / Principal Engineer</p>
+                <p class="experience-description">
+                  Multi-EKS 운영, Active-Active 아키텍처, Karpenter, Istio, ACK
+                  기반 인프라 관리.
+                </p>
+              </li>
+              <li>
+                <div class="experience-heading">
+                  <h3>Mathpresso · QANDA</h3>
+                  <span class="experience-period"
+                    ><time datetime="2022-05">2022.05</time> —
+                    <time datetime="2023-02">2023.02</time></span
+                  >
+                </div>
+                <p class="experience-role">DevOps Engineer</p>
+                <p class="experience-description">
+                  Kubernetes 운영, CI/CD 파이프라인, 인프라 자동화와 모니터링.
+                </p>
+              </li>
+              <li>
+                <div class="experience-heading">
+                  <h3>Coupang</h3>
+                  <span class="experience-period"
+                    ><time datetime="2020-11">2020.11</time> —
+                    <time datetime="2022-05">2022.05</time></span
+                  >
+                </div>
+                <p class="experience-role">Principal Engineer</p>
+                <p class="experience-description">
+                  대규모 마이크로서비스 운영, 서비스 안정성, 배포 자동화.
+                </p>
+              </li>
+              <li>
+                <div class="experience-heading">
+                  <h3>Samsung Electronics</h3>
+                  <span class="experience-period"
+                    ><time datetime="2009-01">2009.01</time> —
+                    <time datetime="2020-10">2020.10</time></span
+                  >
+                </div>
+                <p class="experience-role">Staff Engineer</p>
+                <p class="experience-description">
+                  임베디드 소프트웨어 개발과 시스템 아키텍처 설계.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="expertise">
+          <div>
+            <h3>AI &amp; Agents</h3>
+            <p>
+              Amazon Bedrock · AgentCore · LLM Evaluation<br />Claude Code ·
+              Codex · MCP
+            </p>
+          </div>
+          <div>
+            <h3>Cloud &amp; Platform</h3>
+            <p>
+              AWS · GCP · Kubernetes · EKS<br />Karpenter · Istio · Multi-Region
+            </p>
+          </div>
+          <div>
+            <h3>Engineering &amp; Operations</h3>
+            <p>
+              Terraform · ACK · Argo CD · GitHub Actions<br />Python · Go ·
+              TypeScript · Observability
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section container"
+        id="writing"
+        aria-labelledby="writing-title"
+      >
+        <div class="section-top">
+          <div>
+            <span class="eyebrow">Writing &amp; talks</span>
+            <h2 id="writing-title">배운 것은, 함께 나눕니다.</h2>
+          </div>
+          <p class="section-intro">
+            현장에서 얻은 경험을 발표와 글로 정리합니다.
+          </p>
+        </div>
+        <ul class="writing-list">
+          <li>
+            <div class="writing-link is-record">
+              <span class="writing-type">발표 이력 · 2024</span>
+              <h3>EKS 환경에서 Karpenter 활용하기</h3>
+              <span class="writing-context">AWS Summit Seoul</span>
+            </div>
+          </li>
+          <li>
+            <div class="writing-link is-record">
+              <span class="writing-type">발표 이력 · 2025</span>
+              <h3>우리은행 BaaS 플랫폼과 Control Tower</h3>
+              <span class="writing-context">AI x Industry Week</span>
+            </div>
+          </li>
+          <li>
+            <a
+              class="writing-link"
+              href="https://www.atomai.click/kubernetes-docs/ko/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span class="writing-type">Guidebook</span>
+              <h3>Kubernetes와 Amazon EKS 운영 가이드북</h3>
+              <span class="writing-context">kubernetes-docs</span
+              ><svg class="icon" aria-hidden="true">
+                <use href="#arrow-up-right" /></svg
+            ></a>
+          </li>
+        </ul>
+        <div class="personal-note">
+          <p>
+            <strong>코드 밖의 기록도 있습니다.</strong> 일상과 여행에서 만난
+            장면들을 사진으로 남깁니다.
+          </p>
+          <a
+            class="text-link"
+            href="https://www.atomai.click/blog/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >사진 블로그
+            <svg class="icon" aria-hidden="true">
+              <use href="#arrow-up-right" /></svg
+          ></a>
+        </div>
+      </section>
+
+      <section class="contact" aria-labelledby="contact-title">
+        <div class="container contact-inner">
+          <div>
+            <h2 id="contact-title">다음 이야기도,<br />함께 만들어 가요.</h2>
+            <p>
+              클라우드, AI, 그리고 더 나은 개발 경험에 관한 대화를 환영합니다.
+            </p>
+          </div>
+          <a
+            class="button button-dark"
+            href="https://www.linkedin.com/in/oh-junseok/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >LinkedIn에서 연결하기
+            <svg class="icon" aria-hidden="true">
+              <use href="#arrow-up-right" /></svg
+          ></a>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p>© 2026 Oh Junseok. 개인 프로젝트와 배움의 기록.</p>
+        <div class="footer-links">
+          <a
+            href="https://github.com/Atom-oh"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          ><a
+            href="https://www.linkedin.com/in/oh-junseok/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >LinkedIn</a
+          ><a href="#main">맨 위로 ↑</a>
         </div>
       </div>
-    </aside>
-
-    <!-- Content -->
-    <main class="content">
-
-      <!-- About -->
-      <section class="section">
-        <h2 class="section-title"><span>//</span> About</h2>
-        <p class="about-text">
-          글로벌 서비스 구축, Multi-Region HA 아키텍처, DevOps 자동화, 그리고 Agentic AI까지 &mdash; 클라우드 네이티브 기술의 최전선에서 일하고 있습니다.
-          현재 AWS Solutions Architect로서 고객이 확장 가능하고 탄력적인 아키텍처를 설계할 수 있도록 돕고 있습니다.
-        </p>
-        <p class="about-text" style="margin-top: 0.75rem;">
-          EKS 기반 AI/ML 워크로드 운영, Amazon Bedrock Agent 활용, Karpenter 오토스케일링, Istio 서비스 메시 등 최신 클라우드 기술을 실전에 적용하며,
-          Terraform과 ACK를 활용한 IaC, GitOps 기반 멀티 클러스터 배포 전략 등 현대적인 운영 패턴을 설계합니다.
-        </p>
-      </section>
-
-      <!-- Experience -->
-      <section class="section">
-        <h2 class="section-title"><span>//</span> Experience</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-period">2024.12 &mdash; Present</div>
-            <div class="timeline-role"><span class="timeline-company">AWS</span> &middot; Sr. Solutions Architect</div>
-            <div class="timeline-desc">클라우드 네이티브 아키텍처 설계 및 고객 기술 지원. EKS, 컨테이너, IaC 전문 영역.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-period">2023.02 &mdash; 2025.01</div>
-            <div class="timeline-role"><span class="timeline-company">Yogiyo</span> &middot; DevOps / Principal Engineer</div>
-            <div class="timeline-desc">Multi-EKS 클러스터 운영, Active-Active 아키텍처 구축, Karpenter 도입, Istio 서비스 메시 적용, Terraform에서 ACK 기반 IaC 전환.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-period">2022.05 &mdash; 2023.02</div>
-            <div class="timeline-role"><span class="timeline-company">Mathpresso (QANDA)</span> &middot; DevOps Engineer</div>
-            <div class="timeline-desc">Kubernetes 클러스터 관리 및 CI/CD 파이프라인 구축. 인프라 자동화 및 모니터링 체계 수립.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-period">2020.11 &mdash; 2022.05</div>
-            <div class="timeline-role"><span class="timeline-company">Coupang</span> &middot; Principal Engineer</div>
-            <div class="timeline-desc">대규모 마이크로서비스 아키텍처 운영. 서비스 안정성 및 배포 자동화.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-period">2009.01 &mdash; 2020.10</div>
-            <div class="timeline-role"><span class="timeline-company">Samsung Electronics</span> &middot; Staff Engineer</div>
-            <div class="timeline-desc">임베디드 소프트웨어 개발 및 시스템 아키텍처 설계. 11년간의 엔지니어링 기반 구축.</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Skills -->
-      <section class="section">
-        <h2 class="section-title"><span>//</span> Skills</h2>
-
-        <div class="skills-category">
-          <div class="skills-category-name">Cloud</div>
-          <div class="skills-tags">
-            <span class="skill-tag">AWS</span>
-            <span class="skill-tag">GCP</span>
-          </div>
-        </div>
-
-        <div class="skills-category">
-          <div class="skills-category-name">Container & Orchestration</div>
-          <div class="skills-tags">
-            <span class="skill-tag">Kubernetes</span>
-            <span class="skill-tag">EKS</span>
-            <span class="skill-tag">Istio</span>
-            <span class="skill-tag">Karpenter</span>
-            <span class="skill-tag">Docker</span>
-          </div>
-        </div>
-
-        <div class="skills-category">
-          <div class="skills-category-name">IaC & CI/CD</div>
-          <div class="skills-tags">
-            <span class="skill-tag">Terraform</span>
-            <span class="skill-tag">ACK</span>
-            <span class="skill-tag">ArgoCD</span>
-            <span class="skill-tag">GitHub Actions</span>
-            <span class="skill-tag">Spinnaker</span>
-          </div>
-        </div>
-
-        <div class="skills-category">
-          <div class="skills-category-name">Monitoring</div>
-          <div class="skills-tags">
-            <span class="skill-tag">Grafana</span>
-            <span class="skill-tag">Datadog</span>
-            <span class="skill-tag">CloudWatch</span>
-          </div>
-        </div>
-
-        <div class="skills-category">
-          <div class="skills-category-name">Languages & Frameworks</div>
-          <div class="skills-tags">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">Django</span>
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">TypeScript</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- Featured -->
-      <section class="section">
-        <h2 class="section-title"><span>//</span> Featured</h2>
-        <div class="featured-grid">
-
-          <a class="featured-card" href="https://www.youtube.com/watch?v=FuxRoCYMEiA" target="_blank" rel="noopener">
-            <div class="featured-label">Talk</div>
-            <div class="featured-title">AWS Summit Seoul 2024 &mdash; Karpenter in EKS</div>
-            <div class="featured-desc">EKS 환경에서 Karpenter를 활용한 효율적인 노드 오토스케일링 전략 발표.</div>
-            <span class="featured-link">Watch &rarr;</span>
-          </a>
-
-          <a class="featured-card" href="https://www.youtube.com/watch?v=HclHro0Yafc" target="_blank" rel="noopener">
-            <div class="featured-label">Talk</div>
-            <div class="featured-title">AI x Industry Week 2025 &mdash; Woori Bank BaaS + Control Tower</div>
-            <div class="featured-desc">우리은행 BaaS 플랫폼과 Control Tower 아키텍처 구축 사례 발표.</div>
-            <span class="featured-link">Watch &rarr;</span>
-          </a>
-
-          <a class="featured-card" href="https://aws.amazon.com/ko/blogs/tech/yogiyo-multi-eks-gitops-blue-green/" target="_blank" rel="noopener">
-            <div class="featured-label">Blog</div>
-            <div class="featured-title">Multi-EKS GitOps Blue-Green Strategy</div>
-            <div class="featured-desc">요기요의 Multi-EKS 환경에서 GitOps 기반 Blue-Green 배포 전략을 다룬 AWS 기술 블로그.</div>
-            <span class="featured-link">Read &rarr;</span>
-          </a>
-
-        </div>
-      </section>
-
-      <!-- Projects -->
-      <section class="section">
-        <h2 class="section-title"><span>//</span> Projects</h2>
-
-        <div class="project-group">
-          <div class="project-group-name">Kubernetes &amp; EKS</div>
-          <div class="featured-grid">
-            <div class="featured-card">
-              <div class="featured-label">Docs</div>
-              <div class="featured-title">kubernetes-docs</div>
-              <div class="featured-desc">Amazon EKS를 폭넓게 이해하기 위한 심화 기술 문서 사이트.</div>
-              <div class="project-links">
-                <a href="https://www.atomai.click/kubernetes-docs/" target="_blank" rel="noopener">Live &rarr;</a>
-                <a href="https://github.com/Atom-oh/kubernetes-docs" target="_blank" rel="noopener">GitHub &rarr;</a>
-              </div>
-            </div>
-
-            <div class="featured-card">
-              <div class="featured-label">Architecture</div>
-              <div class="featured-title">multi-region-architecture</div>
-              <div class="featured-desc">us-east-1/us-west-2 멀티 리전 쇼핑몰 아키텍처. Terraform + K8s + GitHub Actions.</div>
-              <div class="project-links">
-                <a href="https://www.atomai.click/multi-region-architecture/" target="_blank" rel="noopener">Live &rarr;</a>
-                <a href="https://github.com/Atom-oh/multi-region-architecture" target="_blank" rel="noopener">GitHub &rarr;</a>
-              </div>
-            </div>
-
-            <div class="featured-card">
-              <div class="featured-label">Workshop</div>
-              <div class="featured-title">eks-workshop</div>
-              <div class="featured-desc">Amazon EKS 핵심 기능을 실습으로 배우는 한국어 워크숍. 코어 8개 모듈 + EKS Auto Mode 5개 모듈.</div>
-              <div class="project-links">
-                <a href="https://www.atomai.click/eks-workshop/" target="_blank" rel="noopener">Live &rarr;</a>
-                <a href="https://github.com/Atom-oh/eks-workshop" target="_blank" rel="noopener">GitHub &rarr;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-group">
-          <div class="project-group-name">AWS Operations</div>
-          <div class="featured-grid">
-            <div class="featured-card">
-              <div class="featured-label">Ops</div>
-              <div class="featured-title">awsops</div>
-              <div class="featured-desc">AWS 운영 자동화를 위한 도구 및 대시보드 모음.</div>
-              <div class="project-links">
-                <a href="https://www.atomai.click/awsops/" target="_blank" rel="noopener">Live &rarr;</a>
-                <a href="https://awsops.atomai.click" target="_blank" rel="noopener">Demo &rarr;</a>
-                <a href="https://github.com/Atom-oh/awsops" target="_blank" rel="noopener">GitHub &rarr;</a>
-              </div>
-            </div>
-
-            <div class="featured-card">
-              <div class="featured-label">Benchmark</div>
-              <div class="featured-title">aws-ec2-benchmark</div>
-              <div class="featured-desc">EC2 인스턴스 타입별 성능 벤치마크 결과 정리.</div>
-              <div class="project-links">
-                <a href="https://benchmark.aws.atomai.click/" target="_blank" rel="noopener">Live &rarr;</a>
-                <a href="https://github.com/Atom-oh/aws-ec2-benchmark" target="_blank" rel="noopener">GitHub &rarr;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-group">
-          <div class="project-group-name">Content &amp; AI</div>
-          <div class="featured-grid">
-            <div class="featured-card">
-              <div class="featured-label">Framework</div>
-              <div class="featured-title">reactive_presentation</div>
-              <div class="featured-desc">웹 기반 인터랙티브 프레젠테이션 프레임워크.</div>
-              <div class="project-links">
-                <a href="https://presentation.atomai.click/" target="_blank" rel="noopener">Live &rarr;</a>
-                <a href="https://github.com/Atom-oh/reactive_presentation" target="_blank" rel="noopener">GitHub &rarr;</a>
-              </div>
-            </div>
-
-            <div class="featured-card">
-              <div class="featured-label">Skills</div>
-              <div class="featured-title">oh-my-cloud-skills</div>
-              <div class="featured-desc">클라우드 엔지니어를 위한 실전 스킬 컬렉션. AWS, Kubernetes, IaC 관련 학습 리소스와 도구 모음.</div>
-              <div class="project-links">
-                <a href="https://www.atomai.click/oh-my-cloud-skills/" target="_blank" rel="noopener">Live &rarr;</a>
-                <a href="https://github.com/Atom-oh/oh-my-cloud-skills" target="_blank" rel="noopener">GitHub &rarr;</a>
-              </div>
-            </div>
-
-            <div class="featured-card">
-              <div class="featured-label">Blog</div>
-              <div class="featured-title">blog</div>
-              <div class="featured-desc">일상과 여행을 담은 사진 블로그.</div>
-              <div class="project-links">
-                <a href="https://www.atomai.click/blog/" target="_blank" rel="noopener">Live &rarr;</a>
-                <a href="https://github.com/Atom-oh/blog" target="_blank" rel="noopener">GitHub &rarr;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-group">
-          <div class="project-group-name">Claude Code &amp; AI</div>
-          <div class="featured-grid">
-            <div class="featured-card">
-              <div class="featured-label">Platform</div>
-              <div class="featured-title">cc-on-bedrock</div>
-              <div class="featured-desc">Amazon Bedrock 위에서 Claude Code를 다중 사용자에게 제공하는 개발 플랫폼. Terraform + ECS/EC2 + Cognito 기반 사용량·예산 통제.</div>
-              <div class="project-links">
-                <a href="https://www.atomai.click/cc-on-bedrock/" target="_blank" rel="noopener">Live &rarr;</a>
-                <a href="https://github.com/Atom-oh/cc-on-bedrock" target="_blank" rel="noopener">GitHub &rarr;</a>
-              </div>
-            </div>
-
-            <div class="featured-card">
-              <div class="featured-label">Workshop</div>
-              <div class="featured-title">claude-code-workshop</div>
-              <div class="featured-desc">3일 과정 Claude Code 딥다이브 커리큘럼. 챕터별 PDF 슬라이드와 502개 코드 스니펫 아카이브.</div>
-              <div class="project-links">
-                <a href="https://www.atomai.click/claude-code-workshop/" target="_blank" rel="noopener">Live &rarr;</a>
-                <a href="https://github.com/Atom-oh/claude-code-workshop" target="_blank" rel="noopener">GitHub &rarr;</a>
-              </div>
-            </div>
-
-            <div class="featured-card">
-              <div class="featured-label">Plugins</div>
-              <div class="featured-title">claude-code-workshop-skills</div>
-              <div class="featured-desc">워크숍 실습용 Claude Code 플러그인 마켓플레이스. 멀티 AI 협업(co-agent), Kiro 위임 등.</div>
-              <div class="project-links">
-                <a href="https://www.atomai.click/claude-code-workshop-skills/" target="_blank" rel="noopener">Live &rarr;</a>
-                <a href="https://github.com/Atom-oh/claude-code-workshop-skills" target="_blank" rel="noopener">GitHub &rarr;</a>
-              </div>
-            </div>
-
-            <div class="featured-card">
-              <div class="featured-label">Dashboard</div>
-              <div class="featured-title">claude-code-usage-dashboard</div>
-              <div class="featured-desc">Claude Code 사용량 대시보드. OpenTelemetry 텔레메트리를 ClickHouse에 적재하고 React로 비용·도입률 KPI 시각화.</div>
-              <div class="project-links">
-                <a href="https://www.atomai.click/claude-code-usage-dashboard/" target="_blank" rel="noopener">Live &rarr;</a>
-                <a href="https://github.com/Atom-oh/claude-code-usage-dashboard" target="_blank" rel="noopener">GitHub &rarr;</a>
-              </div>
-            </div>
-
-            <div class="featured-card">
-              <div class="featured-label">AI Agent</div>
-              <div class="featured-title">ttobak</div>
-              <div class="featured-desc">AWS Solutions Architect를 위한 AI 미팅 어시스턴트. 실시간 전사·번역과 Bedrock Claude 기반 요약.</div>
-              <div class="project-links">
-                <a href="https://github.com/Atom-oh/ttobak" target="_blank" rel="noopener">GitHub &rarr;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2026 Oh Junseok. Built with pure HTML &amp; CSS.</p>
-    <p style="margin-top: 0.5rem;">
-      <a href="https://github.com/Atom-oh" target="_blank" rel="noopener">GitHub</a>
-      &nbsp;&middot;&nbsp;
-      <a href="https://www.linkedin.com/in/oh-junseok/" target="_blank" rel="noopener">LinkedIn</a>
-    </p>
-  </footer>
-
-</body>
+    </footer>
+    <script>
+      (() => {
+        const filters = document.querySelector(".filters");
+        const filterButtons = [...filters.querySelectorAll("button")];
+        const projects = [
+          ...document.querySelectorAll(".project[data-category]"),
+        ];
+        const count = document.querySelector(".project-count");
+        function applyFilter(selected) {
+          let visible = 0;
+          for (const project of projects) {
+            const matches =
+              selected === "all" ||
+              project.dataset.category.split(" ").includes(selected);
+            project.hidden = !matches;
+            if (matches) visible++;
+          }
+          for (const button of filterButtons)
+            button.setAttribute(
+              "aria-pressed",
+              String(button.dataset.filter === selected),
+            );
+          count.textContent = `${visible}개의 프로젝트`;
+        }
+        filters.addEventListener("click", (event) => {
+          const button = event.target.closest("button[data-filter]");
+          if (button && filters.contains(button))
+            applyFilter(button.dataset.filter);
+        });
+        applyFilter("all");
+        filters.hidden = false;
+        const menu = document.querySelector(".menu-toggle");
+        const navigation = document.querySelector("#navigation");
+        function closeMenu() {
+          navigation.classList.remove("is-open");
+          menu.setAttribute("aria-expanded", "false");
+        }
+        menu.addEventListener("click", () => {
+          const expanded = menu.getAttribute("aria-expanded") !== "true";
+          menu.setAttribute("aria-expanded", String(expanded));
+          navigation.classList.toggle("is-open", expanded);
+        });
+        navigation.addEventListener("click", (event) => {
+          if (event.target.closest("a")) closeMenu();
+        });
+        document.addEventListener("keydown", (event) => {
+          if (
+            event.key === "Escape" &&
+            menu.getAttribute("aria-expanded") === "true"
+          ) {
+            closeMenu();
+            menu.focus();
+          }
+        });
+        matchMedia("(min-width: 769px)").addEventListener("change", closeMenu);
+        document.documentElement.classList.add("js");
+      })();
+    </script>
+  </body>
 </html>
