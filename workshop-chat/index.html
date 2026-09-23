@@ -39,7 +39,11 @@
         <div class="feature-strip"><span>닉네임 입장</span><span>실시간 Q&amp;A</span><span>랩 가이드 AI</span><span>xlsx 내보내기</span></div>
       </section>
 
-      <div class="notice"><strong>이 페이지는 사용 설명서입니다.</strong> 실제 채팅은 운영자가 전달한 워크샵 전용 주소에서 열어 주세요. 아래의 <code>AppUrl</code>은 AWS 배포 결과로 출력되는 주소입니다.</div>
+      <div class="notice">
+        <strong>현재 워크샵 바로가기</strong>
+        <p><a href="https://workshop-chat.atomai.click/">참가자 입장 · 닉네임으로 시작</a> · <a href="https://workshop-chat.atomai.click/operator?view=questions">운영자 질문 보드</a></p>
+        <p>이 페이지는 사용 설명서입니다. 운영자 화면에는 운영자 ID·비밀번호가 필요합니다. 별도로 배포한 워크샵에서는 해당 배포의 <code>AppUrl</code>을 사용하세요.</p>
+      </div>
       <div class="route-grid">
         <a href="#participant" class="route-card"><span class="step-number">01</span><h2>참가자</h2><p>입장하고, 질문하고,<br>도움을 받으세요.</p><span class="route-link">사용법 보기 →</span></a>
         <a href="#deploy" class="route-card"><span class="step-number">02</span><h2>배포 담당자</h2><p>AWS 환경에 채팅을 배포하고<br>입장 방식을 설정하세요.</p><span class="route-link">배포하기 →</span></a>
@@ -51,7 +55,7 @@
         <h2>링크 하나로, 바로 참여하세요.</h2>
         <p>입장 화면은 워크샵의 설정에 따라 달라집니다. 닉네임 입력란이 보이면 아래 순서대로 참여하세요.</p>
         <ol class="steps">
-          <li><strong>운영자가 공유한 공용 링크 열기</strong><p>워크샵의 <code>AppUrl</code>로 접속합니다. 닉네임 모드에서는 모든 참가자가 같은 주소를 사용합니다.</p></li>
+          <li><strong>운영자가 공유한 공용 링크 열기</strong><p><a href="https://workshop-chat.atomai.click/">현재 워크샵 참가자 입장</a>을 엽니다. 별도로 배포한 워크샵은 해당 <code>AppUrl</code>로 접속합니다. 닉네임 모드에서는 모든 참가자가 같은 주소를 사용합니다.</p></li>
           <li><strong>워크샵에서 사용할 닉네임 입력</strong><p>예: <code>구름고래</code>, <code>3조-민트</code>. 닉네임은 다른 참가자에게 표시되므로 실명 대신 워크샵용 이름을 권장합니다.</p></li>
           <li><strong>입장 버튼 누르기</strong><p>참가자용 AWS 계정이나 Cognito ID·비밀번호 없이 입장합니다. 먼저 공지를 확인하고 질문 채널로 이동하세요.</p></li>
         </ol>
@@ -193,7 +197,7 @@ AWS_REGION="$WORKSHOP_REGION" npx cdk deploy --all \
       <section id="operator" class="content-section">
         <div class="section-kicker">FOR OPERATORS</div>
         <h2>운영은 질문 보드에서 시작하세요.</h2>
-        <p><code>AppUrl/operator</code> 또는 입장 화면의 <strong>운영자 로그인</strong>으로 이동합니다. 배포 출력의 운영자 ID와 Secrets Manager에서 조회한 비밀번호를 사용하세요. 참가자가 닉네임을 사용해도 운영자는 항상 Cognito로 인증합니다.</p>
+        <p><a href="https://workshop-chat.atomai.click/operator?view=questions">현재 워크샵 운영자 질문 보드</a>를 엽니다. 별도 배포에서는 <code>AppUrl/operator</code> 또는 입장 화면의 <strong>운영자 로그인</strong>으로 이동합니다. 배포 출력의 운영자 ID와 Secrets Manager에서 조회한 비밀번호를 사용하세요. 참가자가 닉네임을 사용해도 운영자는 항상 Cognito로 인증합니다.</p>
         <div class="table-wrap"><table>
           <thead><tr><th scope="col">운영 메뉴</th><th scope="col">할 일</th></tr></thead>
           <tbody>
