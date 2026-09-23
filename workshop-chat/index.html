@@ -98,7 +98,7 @@
         <p>앱은 CloudFront·WAF → ALB → ECS Fargate 구조로 실행되며, DynamoDB에 상태를 저장합니다. Cognito는 운영자 인증에, S3는 첨부·가이드·내보내기에, Bedrock은 AI 답변에 사용합니다. GitHub Pages에는 이 설명서가 게시되고 실제 앱은 AWS에서 실행됩니다.</p>
         <h3>1. 배포 환경 준비</h3>
         <p>저장소 접근 권한, Git, Node.js 22, npm, AWS CLI, 실행 중인 Docker와 <code>linux/arm64</code> 이미지 빌드 환경이 필요합니다. x86 호스트라면 Docker의 ARM 빌드 지원도 준비하세요. 사용할 AWS 프로필에 CDK 리소스를 생성할 권한과 선택한 리전의 Bedrock 모델 접근 권한이 있어야 합니다.</p>
-        <p>다음 예제는 <strong>Bash</strong> 기준입니다. 값을 실제 환경으로 바꾸고 같은 터미널에서 순서대로 실행하세요. 저장소는 비공개이므로 접근 권한이 있는 GitHub 계정으로 복제해야 합니다.</p>
+        <p>다음 예제는 <strong>Bash</strong> 기준입니다. 값을 실제 환경으로 바꾸고 같은 터미널에서 순서대로 실행하세요. 저장소는 비공개이므로 접근 권한이 있는 GitHub 계정으로 복제해야 합니다. 루트의 <code>npm ci</code>는 공통 lockfile과 npm workspaces 설정에 따라 <code>app</code>·<code>infra</code>·<code>web</code> 의존성을 함께 설치합니다.</p>
         <pre><code class="language-bash">git clone git@github.com:Atom-oh/aws-workshop-chat.git
 cd aws-workshop-chat
 npm ci
@@ -224,7 +224,7 @@ AWS_REGION="$WORKSHOP_REGION" npx cdk deploy --all \
       <section id="finish" class="content-section">
         <div class="section-kicker">CLOSE THE WORKSHOP</div>
         <h2>종료 전에 결과를 내려받으세요.</h2>
-        <p>운영자 상단에서 <strong>지금 내보내기</strong>를 누르고 완료 후 <strong>다운로드</strong>로 xlsx를 저장합니다. <code>Questions</code>, <code>AI_Queries</code>, <code>Participants</code>, <code>Timeline</code> 4개 시트가 생성됩니다. 참가자 시트에서 ID와 닉네임을 연결해 확인할 수 있습니다.</p>
+        <p>운영자 상단에서 <strong>지금 내보내기</strong>를 누르고 완료 후 <strong>다운로드</strong>로 xlsx를 저장합니다. <code>Questions</code>, <code>AI_Queries</code>, <code>Participants</code>, <code>Timeline</code> 데이터 시트와 생성 시각·시트별 행 수를 담은 <code>Meta</code>까지 총 5개 시트가 생성됩니다. 참가자 시트에서 ID와 닉네임을 연결해 확인할 수 있습니다.</p>
         <p>앱은 15분마다 S3의 <code>exports/latest.xlsx</code>를 갱신하지만, 워크샵 계정 밖에 자동 보관하지는 않습니다. xlsx는 첨부파일 원본을 묶은 백업이 아니므로 필요한 미디어와 가이드도 별도로 저장하세요.</p>
         <div class="callout warning"><strong>스택이나 워크샵 계정이 삭제되면 데이터도 사라집니다.</strong><p>메시지, 첨부, 가이드, S3의 xlsx 모두 배포한 리소스 안에 있습니다. 파일을 직접 열어 저장을 확인한 뒤 종료하세요. 운영 중 장애에 대비한 별도 연락 채널도 미리 안내해 두세요.</p></div>
         <details><summary>배포 담당자: AWS 리소스 삭제</summary>

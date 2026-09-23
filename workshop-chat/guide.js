@@ -53,3 +53,14 @@ window.addEventListener("scroll", () => {
 }, { passive: true });
 window.addEventListener("resize", updateCurrentSection);
 updateCurrentSection();
+
+// Include expandable instructions in print, then restore the reader's choices.
+let printOpenedDetails = [];
+window.addEventListener("beforeprint", () => {
+  printOpenedDetails = [...document.querySelectorAll("details:not([open])")];
+  for (const details of printOpenedDetails) details.open = true;
+});
+window.addEventListener("afterprint", () => {
+  for (const details of printOpenedDetails) details.open = false;
+  printOpenedDetails = [];
+});

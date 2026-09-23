@@ -1,5 +1,5 @@
 @font-face{font-family:Pretendard;src:url("../assets/fonts/PretendardVariable.woff2") format("woff2");font-weight:100 900;font-display:swap}
-:root{color-scheme:light;--ink:#152333;--muted:#586575;--accent:#c65017;--line:#dce2e6;--paper:#f6f8fa;--orange:#ff9d57}
+:root{color-scheme:light;--ink:#152333;--muted:#586575;--accent:#b84714;--line:#dce2e6;--paper:#f6f8fa;--orange:#ff9d57}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:96px}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.8;word-break:keep-all;overflow-wrap:anywhere}
@@ -15,7 +15,7 @@ button,a,summary{-webkit-tap-highlight-color:transparent}
 .home-link{font-size:13px;color:var(--muted);text-decoration:none}
 .layout{max-width:1360px;margin:auto;display:grid;grid-template-columns:232px minmax(0,1fr);gap:46px;padding:0 40px}
 .sidebar{position:sticky;top:76px;height:calc(100vh - 76px);overflow:auto;padding:40px 0;align-self:start}
-.nav-label{font-size:10px;letter-spacing:1.6px;font-weight:750;color:#697785;margin:0 0 18px 12px}
+.nav-label{font-size:10px;letter-spacing:1.6px;font-weight:750;color:var(--muted);margin:0 0 18px 12px}
 .sidebar>a{display:block;padding:8px 12px;margin:3px 0;text-decoration:none;font-size:13px;color:#4b5b6a;border-left:2px solid transparent;border-radius:0 6px 6px 0}
 .sidebar>a:hover{background:#e9edf1;color:var(--ink)}
 .sidebar>a[aria-current="location"]{background:#fff0e4;border-left-color:var(--accent);color:#a44215;font-weight:700}
